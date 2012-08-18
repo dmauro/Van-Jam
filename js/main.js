@@ -143,6 +143,9 @@ $(function() {
     var bg = scenario.bg ? './media/bg/' + scenario.bg : '';
     $('#playfield').css({'background-image': 'url(' + bg + ')'});
     
+    // Play audio
+    if (scenario.music) AUDIO.play(scenario.music);
+    
     init_actions_view();
     update_status_view();
 
@@ -150,6 +153,7 @@ $(function() {
     countdown_start();
   }
 
+  AUDIO.init();
   init_scenario( u.fetch(SCENARIOS, 0) );
   
 });
