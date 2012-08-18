@@ -2,8 +2,9 @@ $(function() {
 
   var INTERVALS = {};
   var SETTINGS = {
-    random_options: 6,
+    action_count: 6,
     per_action_time: 1000,
+    vandammism_score: -2,
     keymap: {
 /*      "q": 0, "w": 1, "e": 2,
       "a": 3, "s": 4, "f": 5,
@@ -17,16 +18,18 @@ $(function() {
     if (!arr.length) return null;
     return arr[ Math.floor(Math.random() * arr.length) ];
   }
-
-  function random_words(num) {
-    var words = [];
+  
+  function unique_random_elements(arr, num) {
+    arr = _.uniq(arr);
+    if (arr.length <= num) return arr;
     
-    while (words.length < num) {
-      words.push(random_element(WORDS));
-      words = _.uniq(words);
+    var res = [];
+    while (res.length < num) {
+      res.push(random_element(arr));
+      res = _.uniq(res);
     }
 
-    return words;
+    return res;
   }
 
   function clone(obj) {
@@ -39,19 +42,20 @@ $(function() {
     // Setup selectable actions
     ///////////////////////////
     
-    var actions;
+    var actions = scenario.actions ? clone(scenario.actions) : [];
     
-    if (scenario.actions) {
-      actions = clone(scenario.actions);
-    } else {
-      actions =  _.map(random_words(SETTINGS.random_options), function(w, i, arr) {
-        return {
-          label: w,
-          score: i + 1 - arr.length / 2
-        };
+    // Supplement actions with Vandammisms
+    if (actions.length < SETTINGS.action_count) {
+      var vandammisms = unique_random_elements(VANDAMMISMS, SETTINGS.action_count - actions.length);
+      
+      _.each(vandammisms, function(v) {
+        actions.push({
+          label: v,
+          score: SETTINGS.vandammism_score
+        });
       });
     }
-    
+ 
     // Mark all actions as active
     _.each(actions, function(a, i) {
       a.index = i;

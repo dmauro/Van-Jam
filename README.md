@@ -1,4 +1,4 @@
-Van-Jam
-=======
+Street Fighter: A Romance
+=========================
 
-Street Fighter: The Romance
+Jean-Claude Van Jam, motherscratchers!
