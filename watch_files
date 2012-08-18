@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd ~/Projects/Van-Jam/
+coffee -o js/ -cw coffee/ &
+sass --watch scss:css --style compressed &
