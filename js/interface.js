@@ -85,7 +85,7 @@
       return console.log("GAME OVER");
     }, function() {
       return console.log("MAXIMUM POWER");
-    }, 75);
+    }, 100);
   });
 
 }).call(this);
