@@ -57,5 +57,5 @@ $(->
         console.log "GAME OVER"
     , ->
         console.log "MAXIMUM POWER"
-    , 75
+    , 100
 )
