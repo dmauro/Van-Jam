@@ -17,17 +17,17 @@ var u = (function() {
     return null;
   };  
  
-  module.random_element = function(arr) {
-    if (!arr.length) return null;
+  module.random_element = function(arr) { 
+    if (!arr.length) return null;    
     return arr[ module.random_int(arr.length) ];
   };
   
   module.unique_random_elements = function(arr, num) {
     arr = _.uniq(arr);
-    if (arr.length <= num) return arr;
+    if (arr.length <= num) return arr;  
     
     var res = [];
-    while (res.length < num) {
+    while (res.length < num) { 
       res.push(module.random_element(arr));
       res = _.uniq(res);
     }

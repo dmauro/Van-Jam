@@ -15,4 +15,46 @@ bangkok_paparazzi:
       score: 2
       
 test1:
+  content: TEST1
   
+test2:
+  content: TEST2
+  
+test3:
+  content: TEST3
+  
+test4:
+  content: TEST4
+  
+test5:
+  content: TEST5
+  
+test6:
+  content: TEST6
+  
+test7:
+  content: TEST7
+  
+test8:
+  content: TEST8
+  
+test9:
+  content: TEST9
+  
+test10:
+  content: TEST10
+  
+test11:
+  content: TEST11
+  
+test12:
+  content: TEST12
+  
+test13:
+  content: TEST13
+  
+test14:
+  content: TEST14
+  
+test15:
+  content: TEST15  

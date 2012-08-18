@@ -1,11 +1,18 @@
 $(function() {
 
+  // System init
+  AUDIO.init();
+  
+  // Gameplay variables
   var INTERVALS = {};
   var SETTINGS = {
     action_count: 6,
     per_action_time: 1000,
-    vandammism_score: -2,
-    playthrough_scenario_count: _.min(_.keys(SCENARIOS).length, 10),
+    scenario_outro_time: 1000,
+    vandammism_score: -5,
+    gameflow_scenario_count: _.min([_.keys(SCENARIOS).length, 10]),
+    max_scenario_score: 15, //TODO: make this data-driven
+    max_gameflow_score_ratio: 0.5,
     keymap: {
 /*      "q": 0, "w": 1, "e": 2,
       "a": 3, "s": 4, "f": 5,
@@ -14,6 +21,18 @@ $(function() {
       "1": 0, "2": 1, "3": 2, "4": 3, "5": 4, "6": 5, "7": 6, "8": 7, "9": 8, "0": 9
     }
   };
+  
+  function bind_game_event(event, callback) {
+    $(document).bind(event, callback);
+  }
+  
+  function unbind_game_event(event, callback) {
+    $(document).unbind(event, callback);
+  }
+  
+  function trigger_game_event() {
+    $(document).trigger.apply($(document), arguments);
+  }
   
   function init_scenario(scenario) {
     
@@ -67,7 +86,7 @@ $(function() {
     function update_status_view() {
       $('#status .countdown').html(active_actions().length);
     }
-       
+    
     ///////////////////////
     // Countdown simulation
     ///////////////////////
@@ -100,6 +119,10 @@ $(function() {
     function countdown_stop() {
       clearInterval(INTERVALS.countdown);
       u.unbind_event(COUNTDOWN_EVENTS.click_action);
+      
+      setTimeout(function() {
+        trigger_game_event('scenario_done', [scenario]);
+      }, SETTINGS.scenario_outro_time);
     }
     
     function countdown_tick() {
@@ -124,7 +147,7 @@ $(function() {
       // Early out if the action is invalid or inactive
       if (!a || !a.active) return;
       
-      a.selected = true;
+      scenario.selected_action = a;
       action_selector(id).addClass('selected');
       
       // Halt the countdown
@@ -158,7 +181,45 @@ $(function() {
     countdown_start();
   }
 
-  AUDIO.init();
-  init_scenario( u.obj_fetch(SCENARIOS, 0) );
+  ///////////
+  // GAMEFLOW
+  ///////////
+
+  function gameflow_start() {
+    var gameflow_scenarios = u.unique_random_elements(_.values(SCENARIOS), SETTINGS.gameflow_scenario_count);
+    var current_scenario;
+    
+    var max_gameflow_score = SETTINGS.max_scenario_score * gameflow_scenarios.length * SETTINGS.max_gameflow_score_ratio;
+    var current_score = 0;
+    
+    function next_scenario() {    
+      current_scenario = gameflow_scenarios.shift();      
+      init_scenario(current_scenario);
+    }
+    
+    function modify_score(delta) {      
+      current_score = _.max([0, current_score + delta]);
+      var percentage = Math.floor(100 * current_score/max_gameflow_score);   
+      $('#current_score').css("width", percentage.toString() + "%");
+    }
+    
+    bind_game_event('scenario_done', function(event, scenario) {
+      if (gameflow_scenarios.length) {
+        next_scenario();
+      } else {
+        trigger_game_event('gameflow_over');
+      }
+      
+      modify_score(scenario.selected_action.score);
+    })
+    
+    next_scenario();
+  }
+
+  ////////////////
+  // App bootstrap
+  ////////////////
   
+  
+  gameflow_start();
 });
