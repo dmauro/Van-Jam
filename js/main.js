@@ -14,48 +14,17 @@ $(function() {
     }
   };
   
-  function random_element(arr) {
-    if (!arr.length) return null;
-    return arr[ Math.floor(Math.random() * arr.length) ];
-  }
-  
-  function unique_random_elements(arr, num) {
-    arr = _.uniq(arr);
-    if (arr.length <= num) return arr;
-    
-    var res = [];
-    while (res.length < num) {
-      res.push(random_element(arr));
-      res = _.uniq(res);
-    }
-
-    return res;
-  }
-
-  function clone(obj) {
-    return JSON.parse(JSON.stringify(obj));
-  }
-  
-  function fetch(obj, n) {
-    var i = 0;
-    for (var k in obj) {
-      if (i == n) return obj[k];
-      ++i;
-    }
-    return null;
-  }
-
   function init_scenario(scenario) {
     
     ///////////////////////////
     // Setup selectable actions
     ///////////////////////////
     
-    var actions = scenario.actions ? clone(scenario.actions) : [];
+    var actions = scenario.actions ? u.clone(scenario.actions) : [];
     
     // Supplement actions with Vandammisms
     if (actions.length < SETTINGS.action_count) {
-      var vandammisms = unique_random_elements(VANDAMMISMS, SETTINGS.action_count - actions.length);
+      var vandammisms = u.unique_random_elements(VANDAMMISMS, SETTINGS.action_count - actions.length);
       
       _.each(vandammisms, function(v) {
         actions.push({
@@ -79,7 +48,7 @@ $(function() {
     }
     
     function random_active_action() {
-      return random_element(active_actions());
+      return u.random_element(active_actions());
     }
     
     function action_selector(index) {
@@ -111,27 +80,25 @@ $(function() {
           var action_id = SETTINGS.keymap[key_string];
           on_action_selected(action_id);
         }
+      },
+      click_action: {
+        event: 'click',
+        handler: function(e) {         
+          var action_id = $(e.target).attr('data-id');
+          on_action_selected(action_id);
+        },
+        selector: "#actions_list li"
       }
     };
-    
-    function bind_event(event_meta, selector) {
-      selector = selector || event_meta.selector || document;
-      $(selector).bind(event_meta.event, event_meta.handler);
-    }
-    
-    function unbind_event(event_meta, selector) {
-      selector = selector || event_meta.selector || document;
-      $(selector).unbind(event_meta.event, event_meta.handler);
-    }
-    
+       
     function countdown_start() {
       INTERVALS.countdown = setInterval(countdown_tick, SETTINGS.per_action_time);
-      bind_event(COUNTDOWN_EVENTS.key_action);
+      u.bind_event(COUNTDOWN_EVENTS.click_action);
     }
     
     function countdown_stop() {
       clearInterval(INTERVALS.countdown);
-      unbind_event(COUNTDOWN_EVENTS.key_action);
+      u.unbind_event(COUNTDOWN_EVENTS.click_action);
     }
     
     function countdown_tick() {
@@ -167,19 +134,19 @@ $(function() {
       $('#result .score').html('Score: ' + a.score);
     }
 
-    ////////////
-    // Game init
-    ////////////
-
-    // Start the countdown
-    countdown_start();
+    /////////////////////
+    // Scenario bootstrap
+    /////////////////////
 
     // Setup the initial view
     $('#scenario_content').html(scenario.content);
     init_actions_view();
     update_status_view();
+
+    // Start the countdown
+    countdown_start();
   }
 
-  init_scenario( fetch(SCENARIOS, 0) );
+  init_scenario( u.fetch(SCENARIOS, 0) );
   
 });

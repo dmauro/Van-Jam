@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd ~/Projects/Van-Jam/
+cd "$( dirname "${BASH_SOURCE[0]}" )"
 coffee -o js/ -cw coffee/ &
 sass --watch scss:css --style compressed &

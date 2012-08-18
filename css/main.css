@@ -10,11 +10,15 @@ body {
   text-align: center;
 }
 
-#actions li.inactive {
+#actions_list li {
+  cursor: pointer;
+}
+
+#actions_list li.inactive {
   text-decoration: line-through;
 }
 
-#actions li.selected {
+#actions_list li.selected {
   font-weight: bold;
   color: blue;
 }

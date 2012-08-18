@@ -1,2 +1,3 @@
 #!/bin/bash
+cd "$( dirname "${BASH_SOURCE[0]}" )"
 ruby ./export_scenarios.rb ./scenarios.yml > scenarios.js
