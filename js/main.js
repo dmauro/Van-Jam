@@ -140,6 +140,9 @@ $(function() {
 
     // Setup the initial view
     $('#scenario_content').html(scenario.content);
+    var bg = scenario.bg ? './media/bg/' + scenario.bg : '';
+    $('#playfield').css({'background-image': 'url(' + bg + ')'});
+    
     init_actions_view();
     update_status_view();
 

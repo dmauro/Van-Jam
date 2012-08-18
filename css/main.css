@@ -10,6 +10,21 @@ body {
   text-align: center;
 }
 
+#playfield {
+  width: 800px;
+  height: 600px;
+  padding: 20px;
+}
+
+#temp_content {
+  width: 700px;
+  margin: 0 auto 0 auto;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.7);
+  
+}
+
 #actions_list li:not(.inactive) {
   cursor: pointer;
 }
