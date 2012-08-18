@@ -3,20 +3,28 @@
 .health_bar {
     position:relative;
     width:500px;
-    height:50px;
+    height:48px;
     background:#eee;
 
     .fill {
         float:left;
         height:100%;
         width:0%;
-        background:orange;        
+        background:url(../img/health_bar.png);
     }
 
     .empty {
         float:left;
         height:100%;
         width:0%;
-        background:red;
+        background:url(../img/health_bar_damage.gif);
+    }
+
+    &.jcvd {
+        .fill,
+        .empty {
+            float:left;
+            background-position:top left;
+        }
     }
 }
