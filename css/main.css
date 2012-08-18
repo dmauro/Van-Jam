@@ -9,3 +9,12 @@ body {
   margin: 0 auto 0 auto;
   text-align: center;
 }
+
+#actions li.inactive {
+  text-decoration: line-through;
+}
+
+#actions li.selected {
+  font-weight: bold;
+  color: blue;
+}
