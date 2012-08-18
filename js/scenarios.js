@@ -1,7 +1,1 @@
-var SCENARIOS = {
-
-  test1: {
-    content: "Blah blah blah"
-  },
-
-};
+var SCENARIOS = {"bangkok_paparazzi":{"content":"You are out on a romantic tuk-tuk ride through the streets of Bangkok with Kylie Minogue. Suddenly you are accosted by a dozen paparazzi!","actions":[{"label":"Attack those pieces of merde!","score":0},{"label":"Strike a pose!","score":1},{"label":"Run! You're not wearing any makeup!","score":2}]}};

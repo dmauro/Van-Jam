@@ -35,6 +35,15 @@ $(function() {
   function clone(obj) {
     return JSON.parse(JSON.stringify(obj));
   }
+  
+  function fetch(obj, n) {
+    var i = 0;
+    for (var k in obj) {
+      if (i == n) return obj[k];
+      ++i;
+    }
+    return null;
+  }
 
   function init_scenario(scenario) {
     
@@ -171,6 +180,6 @@ $(function() {
     update_status_view();
   }
 
-  init_scenario( SCENARIOS.test1 );
+  init_scenario( fetch(SCENARIOS, 0) );
   
 });
