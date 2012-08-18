@@ -2,9 +2,24 @@
 var u = (function() {
   var module = {};
   
+  // Returns integer in [0, max)
+  module.random_int = function(max) {
+    var v = Math.floor(Math.random() * max);
+    return v == max ? 0 : v;
+  };
+
+  module.obj_fetch = function(obj, n) {
+    var i = 0;
+    for (var k in obj) {
+      if (i == n) return obj[k];
+      ++i;
+    }
+    return null;
+  };  
+ 
   module.random_element = function(arr) {
     if (!arr.length) return null;
-    return arr[ Math.floor(Math.random() * arr.length) ];
+    return arr[ module.random_int(arr.length) ];
   };
   
   module.unique_random_elements = function(arr, num) {
@@ -22,15 +37,6 @@ var u = (function() {
 
   module.clone = function(obj) {
     return JSON.parse(JSON.stringify(obj));
-  };
-  
-  module.fetch = function(obj, n) {
-    var i = 0;
-    for (var k in obj) {
-      if (i == n) return obj[k];
-      ++i;
-    }
-    return null;
   };
   
   // Event defintions: { event: "event_label", handler: function }

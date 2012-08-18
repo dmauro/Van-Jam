@@ -5,6 +5,7 @@ $(function() {
     action_count: 6,
     per_action_time: 1000,
     vandammism_score: -2,
+    playthrough_scenario_count: _.min(_.keys(SCENARIOS).length, 10),
     keymap: {
 /*      "q": 0, "w": 1, "e": 2,
       "a": 3, "s": 4, "f": 5,
@@ -144,7 +145,11 @@ $(function() {
     $('#playfield').css({'background-image': 'url(' + bg + ')'});
     
     // Play audio
-    if (scenario.music) AUDIO.play(scenario.music);
+    if (scenario.music) {
+      AUDIO.play('music', scenario.music);
+    } else {
+      AUDIO.stop('music');
+    }
     
     init_actions_view();
     update_status_view();
@@ -154,6 +159,6 @@ $(function() {
   }
 
   AUDIO.init();
-  init_scenario( u.fetch(SCENARIOS, 0) );
+  init_scenario( u.obj_fetch(SCENARIOS, 0) );
   
 });
