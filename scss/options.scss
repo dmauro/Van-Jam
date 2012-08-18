@@ -1,0 +1,22 @@
+@import "mixins";
+
+ul.options {
+    position:relative;
+    width:800px;
+    height:600px;
+    background:#eee;
+
+    li {
+        position:absolute;
+        top:-1000px;
+        left:-1000px;
+        display:inline-block;
+        margin:0.5em;
+        padding:1em 1.5em;
+        background:blue;
+        color:#fff;
+        text-shadow: 0 -1px 0 rgba(#000, 0.3);
+        cursor:pointer;
+        @include border-radius(3em);
+    }
+}
