@@ -1,0 +1,22 @@
+@import "mixins.scss";
+
+.health_bar {
+    position:relative;
+    width:500px;
+    height:50px;
+    background:#eee;
+
+    .fill {
+        float:left;
+        height:100%;
+        width:0%;
+        background:orange;        
+    }
+
+    .empty {
+        float:left;
+        height:100%;
+        width:0%;
+        background:red;
+    }
+}
