@@ -10,7 +10,7 @@ body {
   text-align: center;
 }
 
-#actions_list li {
+#actions_list li:not(.inactive) {
   cursor: pointer;
 }
 
