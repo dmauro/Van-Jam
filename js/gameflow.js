@@ -2,6 +2,7 @@ var Gameflow = (function() {
   var klass = function() {
     this.stage_data = u.clone(STAGES);
     this.score = 0;
+    this.next_stage_id = 0;
   };
   
   klass.prototype.modify_score = function(score) {
@@ -34,9 +35,9 @@ var Gameflow = (function() {
     
     function next_stage() {
       if (!this_gameflow.stage_data.length) return null;
-      current_stage = new Stage(this_gameflow, this_gameflow.stage_data.shift());
-      current_stage.run();
-      return current_stage;
+      (new Stage(this_gameflow.next_stage_id, this_gameflow.stage_data.shift(), this_gameflow)).run();
+      this_gameflow.next_stage_id += 1;
+      return true;
     }    
     
     ///////////

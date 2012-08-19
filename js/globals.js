@@ -6,12 +6,11 @@ $(function() {
     default_action_score: 5,
     gameflow_scenario_count: Math.min(_.keys(SCENARIOS).length, 5),
     total_scenarios: _.reduce(STAGES, function(res, stage) { return res + stage.scenarios.length }, 0),
-    max_scenario_score: _.max(_.values(SCORES)),
-    max_gameflow_score_ratio: 0.5,
+    max_scenario_score: _.max(_.values(SCORES))
   };
   
   // dependent values
-  SETTINGS.max_gameflow_sore = SETTINGS.total_scenarios * SETTINGS.max_scenario_score * SETTINGS.max_gameflow_score_ratio;
+  SETTINGS.max_gameflow_score = SETTINGS.total_scenarios * SETTINGS.max_scenario_score;
 });
 
 

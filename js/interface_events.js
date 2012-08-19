@@ -3,17 +3,36 @@ $(function() {
   VIEW = {
     timer: new gui.Timer(),
     score_meter: new gui.HeartMeter(),
-    actions: new gui.ChoiceList(SETTINGS.action_count)    
+    actions: new gui.ChoiceList(SETTINGS.action_count),
+    scene: new gui.Scenario()
   };
    
   // Events
   events = {
-    scenario_prompt_display_start: function() {
-      u.center_node('#scenario_prompt .content');
+    stage_enter: function(event, stage) {
+      AUDIO.play('music', stage.music, {loop: true});
+      $('#playfield').css({'background-image': 'url(' + './img/bg/' + stage.bg + ')'});      
     },
     
-    gameplay_intro_display_start: function() {      
-      u.center_node('#gameplay_intro .content');
+    stage_prompt_display_start: function(event, stage, anim_done_callback) {
+      VIEW.scene.set_scene(stage.id + 1, stage.prompt, anim_done_callback);      
+    },
+    
+    stage_prompt_display_end: function(event, anim_done_callback) {
+      VIEW.scene.hide_scene(anim_done_callback);
+    },
+    
+    scenario_prompt_display_start: function(event, scenario, anim_done_callback) {
+      VIEW.scene.show_prompt(scenario.prompt, anim_done_callback, !scenario.stage.is_raul);
+    },
+
+    scenario_prompt_display_end: function(event, anim_done_callback) {
+      VIEW.scene.hide_prompt(); // doesn't take callback
+      anim_done_callback();
+    },
+    
+    gameplay_intro_display_start: function(event, scenario, anim_done_callback) {
+      VIEW.scene.start_round(scenario.id + 1, anim_done_callback);
     },
     
     countdown_update: function(event, value) {

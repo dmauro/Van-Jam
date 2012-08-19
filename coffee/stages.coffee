@@ -18,6 +18,7 @@ window.STAGES = [
   ,
     bg: "scene_3.png"
     prompt: 'Oh no! Raul Julia has invited Kylie to his trailer for a "glass of wine."'
+    is_raul: true
     scenarios: [
       window.SCENARIOS['villainy'],
       window.SCENARIOS['fellow_warrior'],

@@ -1,10 +1,13 @@
 var Stage = (function() {
   var klass = function(id, config, gameflow) {
+    this.id = id;
     this.gameflow = gameflow;
     this.prompt = config.prompt;
     this.scenario_data = u.clone(config.scenarios);
     this.bg = config.bg;
-    this.music = config.music;  
+    this.music = config.music;
+    this.is_raul = config.is_raul;
+    this.next_scenario_id = 0;
   };
     
   klass.prototype.run = function() {    
@@ -31,7 +34,8 @@ var Stage = (function() {
     
     function next_scenario() {    
       if (!this_stage.scenario_data.length) return null;     
-      (new Scenario(this_stage.gameflow, this_stage.scenario_data.shift())).run();
+      (new Scenario(this_stage.next_scenario_id, this_stage.scenario_data.shift(), this_stage)).run();
+      this_stage.next_scenario_id += 1;
       return true;
     }
 
@@ -39,23 +43,17 @@ var Stage = (function() {
     // State choreography
     
     function show_prompt() {
-      $('#stage_prompt .content').html(this_stage.prompt);
-      u.trigger_event('stage_prompt_display_start');
-      
-      $('#stage_prompt').fadeIn(500, function() {
-          $('#stage_prompt').one('click', clear_prompt);
+      u.trigger_event('stage_prompt_display_start', this_stage, function() {
+        $('#playfield').one('click', clear_prompt);
       });
     }
     
     function clear_prompt() {
-      $('#stage_prompt').fadeOut(500, start_scenarios);
+      u.trigger_event('stage_prompt_display_end', start_scenarios);
     }
     
     // Kick-off
-    u.trigger_event('stage_enter', this);
-    AUDIO.play('music', this.music, {loop: true});
-    $('#playfield').css({'background-image': 'url(' + './img/bg/' + this.bg + ')'});
-    
+    u.trigger_event('stage_enter', this);    
     show_prompt();
   };
   

@@ -1,6 +1,7 @@
 var Scenario = (function() {
-  var klass = function(gameflow, config) {    
-    this.gameflow = gameflow;
+  var klass = function(id, config, stage) {
+    this.id = id;
+    this.stage = stage;
     this.prompt = config.prompt;
 
     // Setup action configurtion data.
@@ -34,31 +35,17 @@ var Scenario = (function() {
     // State choreography
     
     function show_prompt() {
-      $('#scenario_prompt .content').html(this_scenario.prompt);
-      u.trigger_event('scenario_prompt_display_start');
-      
-      $('#scenario_prompt').fadeIn(500, function() {
-          $('#scenario_prompt').one('click', clear_prompt);
+      u.trigger_event('scenario_prompt_display_start', this_scenario, function() {
+        $('#playfield').one('click', clear_prompt);
       });
     }
     
     function clear_prompt() {
-      $('#scenario_prompt').fadeOut(500, show_gameplay_intro);
+      u.trigger_event('scenario_prompt_display_end', show_gameplay_intro);
     }
     
     function show_gameplay_intro() {
-      $('#gameplay_intro .content').html('FLIRT!');
-      u.trigger_event('gameplay_intro_display_start');
-      
-      $('#gameplay_intro').fadeIn(500, clear_gameplay_intro);
-    }
-    
-    function clear_gameplay_intro() {
-      $('#gameplay_intro').fadeOut(500, show_actions);
-    }
-    
-    function show_actions() {
-      $('#action_frame').fadeIn(500, start_gameplay);
+      u.trigger_event('gameplay_intro_display_start', this_scenario, start_gameplay);
     }
     
     var gameplay_events = {
@@ -73,7 +60,7 @@ var Scenario = (function() {
       action_selected: {
         event: 'action_selected',
         handler: function(event, action) {
-          this_scenario.gameflow.modify_score(action.score);
+          this_scenario.stage.gameflow.modify_score(action.score);
           end_gameplay();
         }
       },
@@ -120,11 +107,7 @@ var Scenario = (function() {
     
     function finish() {
       _.each(termination_events, function(e) { u.unbind_event(e); });
-      
-      $('#action_frame').fadeOut(500, function() {       
-        // Broadcast event
-        u.trigger_event('scenario_over');  
-      });      
+      u.trigger_event('scenario_over');  
     }
     
     show_prompt();
