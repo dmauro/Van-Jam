@@ -7,69 +7,69 @@ window.SCORES =
     offensive   : -10
 
 window.SCENARIOS =
-    'temp1':
-        prompt: 'Placeholder 1'
+    'how_are_you':
+        prompt: 'Cammy here. Are you all right?'
         actions: [
-                label   : "smooth"
+                label   : "More than all right, now you are here."
                 score   : SCORES.smooth
             ,
-                label   : "badass"
+                label   : "I'm okay, just half dead."
                 score   : SCORES.bad_ass
             ,
-                label   : "sweet"
+                label   : "Sure. . . But only if you wear that dress."
                 score   : SCORES.sweet
             ,
-                label   : "zero"
+                label   : "[point to biceps]"
                 score   : 0
             ,
-                label   : "just bad"
+                label   : "Hello, yes. I am Van Damme."
                 score   : SCORES.just_bad
             ,
-                label   : "offensive"
+                label   : "Wait. Where is your Cammy costume?"
                 score   : SCORES.offensive
         ]
             
-    'temp2':
-        prompt: 'Placeholder 1'
+    'stealth_compromised':
+        prompt: "Stealth mode compromised, sir! We're busted!"
         actions: [
-                label   : "smooth"
+                label   : "Luckily, you've driven me crazy. . . So I'm going to do it."
                 score   : SCORES.smooth
             ,
-                label   : "badass"
+                label   : "[upper cut a movie extra]"
                 score   : SCORES.bad_ass
             ,
-                label   : "sweet"
+                label   : "What a woman!"
                 score   : SCORES.sweet
             ,
-                label   : "zero"
+                label   : ". . . Merde."
                 score   : 0
             ,
-                label   : "just bad"
+                label   : "What a screw up."
                 score   : SCORES.just_bad
             ,
-                label   : "offensive"
+                label   : "My nipples are so hard, they've started talking to me."
                 score   : SCORES.offensive
         ]
             
-    'temp3':
-        prompt: 'Placeholder 1'
+    'leaving':
+        prompt: '[tearful] He told us to leave. We did the right thing.'
         actions: [
-                label   : "smooth"
+                label   : "If you believe what you say, then acting is easy."
                 score   : SCORES.smooth
             ,
-                label   : "badass"
+                label   : "I guess you've earned your passport home."
                 score   : SCORES.bad_ass
             ,
-                label   : "sweet"
+                label   : "Ohh, I didn't know you cared,"
                 score   : SCORES.sweet
             ,
-                label   : "zero"
+                label   : "[flip off camera]"
                 score   : 0
             ,
-                label   : "just bad"
+                label   : "You'll have to do better than that!"
                 score   : SCORES.just_bad
             ,
-                label   : "offensive"
+                label   : "I want be naked in front of you -- Not naked-naked!"
                 score   : SCORES.offensive
         ]            
     
@@ -79,7 +79,7 @@ window.SCENARIOS =
                 label   : "God gave me a great body, and it is my duty to take care of my physical temple."
                 score   : SCORES.smooth
             ,
-                label   : "BADASS PLACEHOLDER***"
+                label   : "I am the Fred Astaire of karate. It is impossible for me to make a bad movie."
                 score   : SCORES.bad_ass
             ,
                 label   : "I'm one of the most sensitive human beings on Earth, and I know it."
@@ -96,12 +96,12 @@ window.SCENARIOS =
         ]
 
     "conversational" :
-        prompt  : "PLACEHOLDER PROMPT FROM KYLIE***"
+        prompt  : "So what are you up to these days?"
         actions : [
-              label : "I am the Fred Astaire of karate."
+              label : "You think I would wear black silk underwear? (Because I do...)"
               score : SCORES.smooth
             ,
-              label : "I love challenges. If you don't have any and can do whatever you want, then it's probably time to die."
+              label : "I love challenges. If you don't have any and can do whatever you want, then it's probably time to die. "
               score : SCORES.bad_ass
             ,
               label : "My biggest orgasm - not in a sexual way - is to walk with my dogs on the beach."
@@ -126,7 +126,7 @@ window.SCENARIOS =
               label : "Now, who wants to go home... and who wants to go with ME?"
               score : SCORES.bad_ass
             ,
-              label : "SWEET PLACEHOLDER***"
+              label : "Give me a chance? My mama took one."
               score : SCORES.sweet
             ,
               label : "Perhaps I shouldn't repeat this conversation."
@@ -148,7 +148,7 @@ window.SCENARIOS =
               label : "[Sock Raul in the jaw while flexing]"
               score : SCORES.bad_ass
             ,
-              label : "SWEET PLACEHOLDER***"
+              label : "What is a movie star? It is an illusion!"
               score : SCORES.sweet
             ,
               label : "[ANIMAL HOWL]"
@@ -157,7 +157,7 @@ window.SCENARIOS =
               label : "Bison. Are you man enough to fight me?"
               score : SCORES.just_bad
             ,
-              label : "OFFENSIVE PLACEHOLDER***"
+              label : "You're dead! You hear me? YOU'RE DEEEAADDD!!!!!"
               score : SCORES.offensive
         ]
 
@@ -173,13 +173,13 @@ window.SCENARIOS =
               label : "How many children have you orphaned this week?"
               score : SCORES.sweet
             ,
-              label : "AWKWARD PLACEHOLDER***"
+              label : "Dolphins are smart . . . But under water only."
               score : 0
             ,
               label : "You're discharged . . . Sarge."
               score : SCORES.just_bad
             ,
-              label : "OFFENSIVE PLACEHOLDER***"
+              label : "Go fuck yourself."
               score : SCORES.offensive
         ]
 
@@ -192,10 +192,10 @@ window.SCENARIOS =
               label : "It's the Collection Agency, Raul. Your ass is six months over due, and it's mine."
               score : SCORES.bad_ass
             ,
-              label : "SWEET PLACEHOLDER***"
+              label : "Kylie, I can make you feel like you are on the Planet Moon."
               score : SCORES.sweet
             ,
-              label : "AWKWARD PLACEHOLDER***"
+              label : "I'M still kicking. I must be on Broadway!"
               score : 0
             ,
               label : "No...You've lost your balls!"
