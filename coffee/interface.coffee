@@ -120,7 +120,7 @@ class gui.ChoiceList
         @choices[num].remove()
         
     on_option_click: (callback) ->
-        @node.children('li.choice').click (event) ->
+        @node.children('li.choice').bind "mousedown", (event) ->
             AUDIO.play 'sfx', 'button_click'
             callback $(event.target).attr('data-id')
 
@@ -160,8 +160,8 @@ class gui.ChoiceList
                 top : "-=20px"
             , 200, =>
                 clone.addClass "highlight"
-                callback() if typeof callback is "function"
                 setTimeout(=>
+                    callback() if typeof callback is "function"
                     clone.remove()
                 , 1000)
             )
