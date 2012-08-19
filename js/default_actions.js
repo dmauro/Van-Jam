@@ -1,4 +1,4 @@
-var VANDAMMISMS = [
+var DEFAULT_ACTIONS = [
   '"Sacrebleu!"',
   '"Merde!"',
   '"Ceci n\'est pas une pipe."',

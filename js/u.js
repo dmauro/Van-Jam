@@ -48,7 +48,13 @@ var u = (function() {
   module.unbind_event = function(event_meta, selector) {
     selector = selector || event_meta.selector || document;
     $(selector).unbind(event_meta.event, event_meta.handler);
-  };  
+  };
+  
+  module.trigger_event = function(event, params, selector) {
+    params = _.isArray(params) ? params : [params];
+    selector = selector || document;
+    $(selector).trigger(event, params);
+  }
   
   return module;
 })();

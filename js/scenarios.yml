@@ -1,7 +1,6 @@
 bangkok_paparazzi:
   bg: sagat.jpg
-  music: cant_get_you_out_of_my_head
-  content:
+  prompt:
     You are out on a romantic tuk-tuk ride through the streets of Bangkok with Kylie Minogue. Suddenly you are accosted by a dozen paparazzi!
   actions:
     -
@@ -15,46 +14,46 @@ bangkok_paparazzi:
       score: 2
       
 test1:
-  content: TEST1
+  prompt: TEST1
   
 test2:
-  content: TEST2
+  prompt: TEST2
   
 test3:
-  content: TEST3
+  prompt: TEST3
   
 test4:
-  content: TEST4
+  prompt: TEST4
   
 test5:
-  content: TEST5
+  prompt: TEST5
   
 test6:
-  content: TEST6
+  prompt: TEST6
   
 test7:
-  content: TEST7
+  prompt: TEST7
   
 test8:
-  content: TEST8
+  prompt: TEST8
   
 test9:
-  content: TEST9
+  prompt: TEST9
   
 test10:
-  content: TEST10
+  prompt: TEST10
   
 test11:
-  content: TEST11
+  prompt: TEST11
   
 test12:
-  content: TEST12
+  prompt: TEST12
   
 test13:
-  content: TEST13
+  prompt: TEST13
   
 test14:
-  content: TEST14
+  prompt: TEST14
   
 test15:
-  content: TEST15  
+  prompt: TEST15  
