@@ -1,5 +1,11 @@
 @import "mixins.scss";
 
+body {
+    margin:0;
+    padding:0;
+    border:0;
+}
+
 #kylie_info {
     position:relative;
     width:330px;
@@ -71,5 +77,37 @@
             font-family:Impact, sans-serif;
             font-size:28px;
         }
+    }
+}
+
+#choices {
+    position:absolute;
+    width:600px;
+    height:400px;
+    top:100px;
+    left:100px;
+    background:rgba(#eee, 0.5);
+    border:2px solid #fff;
+    margin:0;
+    list-style-type:none;
+    @include border-radius(15px);
+}
+
+li.choice {
+    position:absolute;
+    top:-1000px;
+    left:-1000px;
+    display:inline-block;
+    margin:0.5em;
+    padding:1em 1.5em;
+    background:blue;
+    color:#fff;
+    text-shadow: 0 -1px 0 rgba(#000, 0.3);
+    cursor:pointer;
+    list-style-type:none;
+    @include border-radius(3em);
+
+    &.hightlight {
+        @include box-shadow(0 0 5px 2px #29abe2);
     }
 }
