@@ -3,6 +3,7 @@ var AUDIO = (function() {
 
   var current_tracks = {};
   var sound_library = {};
+  var channel_volume = {};
  
   var all_sounds_load_started = false;
   var ready_callback = null;
@@ -30,8 +31,9 @@ var AUDIO = (function() {
     ghetto_mutext = false;
   };  
   
-  function loop(sound) {
+  function loop(sound, volume) {    
     sound.play({
+      'volume': volume || 100,      
       onfinish: function() {
         loop(sound);
       }
@@ -66,6 +68,10 @@ var AUDIO = (function() {
       }
     });
   };
+  
+  module.set_channel_volume = function(channel, v) {
+    channel_volume[channel] = v;
+  };
 
   module.play = function(channel, sound_id, opts) {
     opts = opts || {};
@@ -74,9 +80,9 @@ var AUDIO = (function() {
     current_tracks[channel] = sound_library[sound_id];
     
     if (opts.loop) {
-      loop(current_tracks[channel]);
+      loop(current_tracks[channel], channel_volume[channel]);
     } else {
-      current_tracks[channel].play();
+      current_tracks[channel].play({ volume: channel_volume[channel] || 100 });
     }
   };
   

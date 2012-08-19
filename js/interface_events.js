@@ -1,12 +1,22 @@
-var VIEW;
-
 $(function() {
+  // GUI elements
   VIEW = {
     timer: new gui.Timer(),
     score_meter: new gui.HeartMeter(),
     actions: new gui.ChoiceList(SETTINGS.action_count)    
   };
   
+  // Raw position modification
+  u.center_node('#wrap');
+  u.center_node('#playfield');  
+  u.center_node('#scenario_prompt');
+  u.center_node('#gameplay_intro');    
+  
+  // Audio channels
+  AUDIO.set_channel_volume('sfx', 100);
+  AUDIO.set_channel_volume('music', 70);
+  
+  // Events
   events = {
     scenario_prompt_display_start: function() {
       u.center_node('#scenario_prompt .content');
@@ -18,6 +28,11 @@ $(function() {
     
     countdown_update: function(event, value) {
       VIEW.timer.set(value);
+      
+      var sfx_map = [false, 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+      if (sfx_map[value]) {
+        AUDIO.play('sfx', sfx_map[value]);
+      }
     },
     
     gameplay_start: function(event, option_labels) {      
@@ -69,10 +84,4 @@ $(function() {
   VIEW.actions.on_option_click(function(id) {
     u.trigger_event('option_clicked', id);
   });
-  
-  // Raw position modification
-  u.center_node('#wrap');
-  u.center_node('#playfield');  
-  u.center_node('#scenario_prompt');
-  u.center_node('#gameplay_intro');  
 });
