@@ -3,89 +3,133 @@
 
   window.gui = {};
 
-  gui.HealthBar = (function() {
+  $(function() {
+    return window.heart_meter = new gui.HeartMeter();
+  });
 
-    function HealthBar(bar_node_full, bar_node_temp, empty_callback, full_callback, current) {
-      this.bar_node_full = bar_node_full;
-      this.bar_node_temp = bar_node_temp;
-      this.empty_callback = empty_callback != null ? empty_callback : null;
-      this.full_callback = full_callback != null ? full_callback : null;
-      this.current = current != null ? current : 100;
-      this.total = 100;
+  gui.HeartMeter = (function() {
+
+    function HeartMeter(total, current) {
+      this.total = total != null ? total : 100;
+      this.current = current != null ? current : 0;
+      this.node = $('#kylie_info');
+      this.bar_node_full = $('.fill', this.node);
+      this.bar_node_temp = $('.diff', this.node);
+      this.feedback_node = $('.feedback', this.node);
       this.set_bar_width(this.get_percentage());
       this.set_bar_temp_width(0);
     }
 
-    HealthBar.prototype.get_percentage = function() {
+    HeartMeter.prototype.get_percentage = function() {
       return Math.round(this.current / this.total * 100);
     };
 
-    HealthBar.prototype.set_bar_width = function(amt) {
+    HeartMeter.prototype.set_bar_width = function(amt) {
       return this.bar_node_full.css("width", "" + amt + "%");
     };
 
-    HealthBar.prototype.set_bar_temp_width = function(amt) {
-      return this.bar_node_temp.css("width", "" + amt + "%");
+    HeartMeter.prototype.set_bar_temp_width = function(amt) {
+      return this.bar_node_temp.css("width", "" + amt + "px");
     };
 
-    HealthBar.prototype.check_current_value = function() {
-      if (this.current <= 0) {
-        if (typeof this.empty_callback === "function") {
-          this.empty_callback();
-        }
-      }
-      if (this.current >= 100) {
-        if (typeof this.full_callback === "function") {
-          return this.full_callback();
-        }
-      }
-    };
-
-    HealthBar.prototype.increase = function(amt) {
-      var percentage_jump,
+    HeartMeter.prototype.increase = function(amt) {
+      var old_width, percentage_jump, width_diff,
         _this = this;
       amt = Math.min(amt, this.total - this.current);
       percentage_jump = amt / this.total * 100;
       this.current += amt;
-      this.set_bar_width(this.get_percentage - percentage_jump);
-      this.set_bar_temp_width(percentage_jump);
-      this.check_current_value();
+      old_width = this.bar_node_full.width();
+      this.set_bar_width(this.get_percentage());
+      width_diff = this.bar_node_full.width() - old_width;
+      this.set_bar_temp_width(width_diff);
       return setTimeout(function() {
-        _this.bar_node_temp.animate({
-          width: "0%"
-        }, 300);
-        return _this.bar_node_full.animate({
-          width: "+=" + percentage_jump + "%"
-        }, 300);
+        return _this.bar_node_temp.animate({
+          width: "0"
+        }, 300, "linear");
       }, 500);
     };
 
-    HealthBar.prototype.reduce = function(amt) {
-      var percentage_drop,
+    HeartMeter.prototype.reduce = function(amt) {
+      var new_percentage, old_percentage, old_width, percentage_drop, width_diff,
         _this = this;
       amt = Math.min(amt, this.current);
       percentage_drop = amt / this.total * 100;
+      old_percentage = this.get_percentage();
+      old_width = this.bar_node_full.width();
       this.current -= amt;
-      this.set_bar_width(this.get_percentage());
-      this.set_bar_temp_width(percentage_drop);
-      this.check_current_value();
+      new_percentage = this.get_percentage();
+      this.set_bar_width(new_percentage);
+      width_diff = old_width - this.bar_node_full.width();
+      this.set_bar_width(old_percentage);
+      this.set_bar_temp_width(width_diff);
       return setTimeout(function() {
-        return _this.bar_node_temp.animate({
-          width: "0%"
-        }, 300);
+        _this.bar_node_temp.animate({
+          width: "0px"
+        }, 300, "linear");
+        return _this.bar_node_full.animate({
+          width: "" + new_percentage + "%"
+        }, 300, "linear");
       }, 500);
     };
 
-    return HealthBar;
+    HeartMeter.prototype.show_heart = function(amt) {
+      var heart, text,
+        _this = this;
+      heart = $('<div class="heart"></div>');
+      text = $("<div class=\"score\">+" + amt + "</div>");
+      this.feedback_node.append(heart);
+      this.feedback_node.append(text);
+      return setTimeout(function() {
+        heart.animate({
+          opacity: 0,
+          top: "-12px"
+        }, 300, function() {
+          return $(this).remove();
+        });
+        return text.animate({
+          opacity: 0
+        }, 300, function() {
+          return $(this).remove();
+        });
+      }, 500);
+    };
+
+    HeartMeter.prototype.show_broken_heart = function(amt) {
+      var heart, text,
+        _this = this;
+      heart = $('<div class="heart_broken"></div>');
+      text = $("<div class=\"score\">-" + amt + "</div>");
+      this.feedback_node.append(heart);
+      this.feedback_node.append(text);
+      return setTimeout(function() {
+        heart.animate({
+          opacity: 0,
+          top: "48px"
+        }, 300, function() {
+          return $(this).remove();
+        });
+        return text.animate({
+          opacity: 0
+        }, 300, function() {
+          return $(this).remove();
+        });
+      }, 500);
+    };
+
+    HeartMeter.prototype.update_score = function(amt) {
+      if (amt > 0) {
+        this.increase(amt);
+        return this.show_heart(amt);
+      } else if (amt < 0) {
+        this.reduce(Math.abs(amt));
+        return this.show_broken_heart(amt);
+      } else {
+        return console.log("Do anything for 0 points?");
+      }
+    };
+
+    return HeartMeter;
 
   })();
-
-  $(function() {
-    return window.health = new gui.HealthBar($('.health_bar .fill'), $('.health_bar .empty'), function() {
-      return console.log("GAME OVER");
-    }, function() {
-      return console.log("MAXIMUM POWER");
-    }, 100);
-  });
 
 }).call(this);
