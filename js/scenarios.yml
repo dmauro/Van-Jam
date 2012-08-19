@@ -1,59 +1,137 @@
-bangkok_paparazzi:
-  bg: sagat.jpg
+rough_year:
   prompt:
-    You are out on a romantic tuk-tuk ride through the streets of Bangkok with Kylie Minogue. Suddenly you are accosted by a dozen paparazzi!
+    Hey, Jean. Heard you've been having a rough year. How have you been holding up?
   actions:
     -
-      label: Attack those pieces of merde!
+      label: God gave me a great body, and it is my duty to take care of my physical temple.
+      score: 15
+    -
+      label: BADASS PLACEHOLDER***
+      score: 10
+    -
+      label: I'm one of the most sensitive human beings on Earth, and I know it.
+      score: 5
+    -
+      label: A cookie has no soul, it's just a cookie. But before it was milk and eggs. And in eggs there's the potential for life.
       score: 0
     -
-      label: Strike a pose!
-      score: 1
+      label: Obviously I've done drugs.
+      score: -5
     -
-      label: Run! You're not wearing any makeup!
-      score: 2
-      
-test1:
-  prompt: TEST1
-  
-test2:
-  prompt: TEST2
-  
-test3:
-  prompt: TEST3
-  
-test4:
-  prompt: TEST4
-  
-test5:
-  prompt: TEST5
-  
-test6:
-  prompt: TEST6
-  
-test7:
-  prompt: TEST7
-  
-test8:
-  prompt: TEST8
-  
-test9:
-  prompt: TEST9
-  
-test10:
-  prompt: TEST10
-  
-test11:
-  prompt: TEST11
-  
-test12:
-  prompt: TEST12
-  
-test13:
-  prompt: TEST13
-  
-test14:
-  prompt: TEST14
-  
-test15:
-  prompt: TEST15  
+      label: My wife is not my best sexual partner, but she's good with the housework.
+      score: -10
+
+conversational:
+  prompt:
+    PLACEHOLDER PROMPT FROM KYLIE***
+  actions:
+    -
+      label: I am the Fred Astaire of karate.
+      score: 15
+    -
+      label: I love challenges. If you don't have any and can do whatever you want, then it's probably time to die.
+      score: 10
+    -
+      label: My biggest orgasm - not in a sexual way - is to walk with my dogs on the beach.
+      score: 5
+    -
+      label: [Do a split]
+      score: 0
+    -
+      label: I am fascinated by air. If you remove the air from the sky, all the birds would fall to the ground. And all the planes, too.
+      score: -5
+    -
+      label: Calm the fuck down.
+      score: -10
+
+leaving_thailand:
+  prompt:
+    The director is ready. Back to work! I can't wait to leave Thailand.
+  actions:
+    -
+      label: Let me show you MY Thailand. [smoulder]
+      score: 15
+    -
+      label: Now, who wants to go home... and who wants to go with ME?
+      score: 10
+    -
+      label: SWEET PLACEHOLDER***
+      score: 5
+    -
+      label: Perhaps I shouldn't repeat this conversation.
+      score: 0
+    -
+      label: Our friends who have died here will have died for nothing.
+      score: -5
+    -
+      label: The only way you're leaving is over my dead body.
+      score: -10
+
+villainy:
+  prompt:
+    For you, the day Raul Julia graced your presence was the most important day of your life. But for me, it was Tuesday.
+  actions:
+    -
+      label: I love playing the villain, but a villian with class.
+      score: 15
+    -
+      label: [Sock Raul in the jaw while flexing]
+      score: 10
+    -
+      label: SWEET PLACEHOLDER***
+      score: 5
+    -
+      label: [ANIMAL HOWL]
+      score: 0
+    -
+      label: Bison. Are you man enough to fight me?
+      score: -5
+    -
+      label: OFFENSIVE PLACEHOLDER***
+      score: -10
+
+fellow_warrior:
+  prompt:
+    Why do you address a fellow warrior with such disrespect?
+  actions:
+    -
+      label: Welcome to the Shadaloo front. You're just in time for the kickoff.
+      score: 15
+    -
+      label: I'm going to kick your son-of-a-bitch ass so HARD... that the next Bison wanna-be is gonna feel it.
+      score: 10
+    -
+      label: How many children have you orphaned this week?
+      score: 5
+    -
+      label: AWKWARD PLACEHOLDER***
+      score: 0
+    -
+      label: You're discharged . . . Sarge.
+      score: -5
+    -
+      label: OFFENSIVE PLACEHOLDER***
+      score: -10
+
+dying_raul:
+  prompt:
+    Kylie...I'm....dying...
+  actions:
+    -
+      label: Go home, be a family man!
+      score: 15
+    -
+      label:  It's the Collection Agency, Raul. Your ass is six months over due, and it's mine. 
+      score: 10
+    -
+      label: SWEET PLACEHOLDER***
+      score: 5
+    -
+      label: AWKWARD PLACEHOLDER***
+      score: 0
+    -
+      label: No...You've lost your balls!
+      score: -5
+    -
+      label: [round house kick]
+      score: -10
