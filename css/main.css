@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Goudy+Bookletter+1911);
+
 body {
   margin: 0;
   padding: 0;
@@ -60,6 +62,35 @@ body {
   border: 3px solid white;
 }
 
-#scenario_prompt, #gameplay_intro, #action_frame {
+#scenario_prompt, #gameplay_intro, #action_frame, #game_intro {
   display: none;
+}
+
+#game_intro {
+  width: 800px;
+  height: 600px;
+  background-color: black;
+  position: relative;
+}
+
+#game_intro img {
+  display: block;
+  opacity: 0;
+  margin: 40px auto 80px auto;
+  border-radius: 5px;
+}
+
+#game_intro_text {
+  width: 600px;
+  margin: 0 auto 0 auto;
+}
+
+#game_intro_text > div {
+  font-family: 'Goudy Bookletter 1911';
+  font-size: 36px;
+  color: white;
+  opacity: 0;
+  width: 650px;
+  position: absolute;
+  text-align: center;
 }

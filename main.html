@@ -10,7 +10,7 @@
     <!-- external libs -->
     <script type='text/javascript' src='./js/ext/jquery.js'></script>
     <script type='text/javascript' src='./js/ext/underscore.js'></script>
-    <script type='text/javascript' src='./js/ext/soundmanager2-jsmin.js'></script>
+    <script type='text/javascript' src='./js/ext/soundmanager2-nodebug-jsmin.js'></script>
     
     <!-- generic libs -->
     <script type='text/javascript' src='./js/u.js'></script>        
@@ -29,6 +29,7 @@
     <script type='text/javascript' src='./js/interface_events.js'></script>
     
     <!-- game -->
+    <script type='text/javascript' src='./js/game_intro.js'></script>
     <script type='text/javascript' src='./js/main.js'></script>
   </head>
 
@@ -60,6 +61,15 @@
         
         <div id='action_frame'>
           <ul id='choices'></ul>
+        </div>
+      
+        <div id='game_intro'>
+          <div>&nbps;</div>
+          <img class='bg' src='./media/sepia_couple.jpg' />
+          <div id='game_intro_text'>
+            <div class='a'></div>
+            <div class='b'></div>
+          </div>
         </div>
                 
       </div>

@@ -5,6 +5,14 @@ $(function() {
   }, []);
   
   AUDIO.init(sound_config, function() {
-    (new Gameflow()).run();
+    INTRO.run();
+    
+    // Start the game when the intro is complete
+    u.bind_event({
+      event: 'game_intro_done',
+      handler: function() {
+        (new Gameflow()).run();  
+      }
+    });
   });
 });

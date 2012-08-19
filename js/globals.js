@@ -13,6 +13,9 @@ var MANIFEST = {
     // music
     'i_should_be_so_lucky',
     
+    'love_at_first_sight_intro_loop',
+    'love_at_first_sight_buildup_to_groove',
+    
     // sfx
     'one',
     'two',
@@ -29,7 +32,6 @@ var MANIFEST = {
     'yap',
     'scream',
     'high_scream',
-    'level_entry',
     'yodel',
     'perfect',
     'final',
