@@ -53,7 +53,7 @@ var Stage = (function() {
     
     // Kick-off   
     AUDIO.play('music', this.music, {loop: true});
-    $('#playfield').css({'background-image': 'url(' + './media/bg/' + this.bg + ')'});
+    $('#playfield').css({'background-image': 'url(' + './img/bg/' + this.bg + ')'});
     
     show_prompt();
   };
