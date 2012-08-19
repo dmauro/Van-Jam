@@ -8,6 +8,14 @@ $(function() {
   };
   
   events = {
+    scenario_prompt_display_start: function() {
+      u.center_node('#scenario_prompt .content');
+    },
+    
+    gameplay_intro_display_start: function() {      
+      u.center_node('#gameplay_intro .content');
+    },
+    
     countdown_update: function(event, value) {
       VIEW.timer.set(value);
     },
@@ -61,4 +69,10 @@ $(function() {
   VIEW.actions.on_option_click(function(id) {
     u.trigger_event('option_clicked', id);
   });
+  
+  // Raw position modification
+  u.center_node('#wrap');
+  u.center_node('#playfield');  
+  u.center_node('#scenario_prompt');
+  u.center_node('#gameplay_intro');  
 });

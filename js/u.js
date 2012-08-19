@@ -52,7 +52,38 @@ var u = (function() {
     var params = _.map(arguments, function(a) { return a; });
     event = params.shift();
     $(document).trigger(event, params);
-  }
+  };
+  
+  module.vcenter_node = function(node, within) {
+    within = within || $(node).parent();
+    
+    // HACK: widths/heights aren't updated quite fast enough, so we
+    // need a slight delay.
+    setTimeout(function() {
+      $(node).css({
+        position: 'absolute',
+        top: ($(within).height() - $(node).height()) / 2
+      });
+    }, 0);
+  };
+  
+  module.hcenter_node = function(node, within) {
+    within = within || $(node).parent();
+
+    // HACK: widths/heights aren't updated quite fast enough, so we
+    // need a slight delay.
+    setTimeout(function() {
+      $(node).css({
+        position: 'absolute',
+        left: ($(within).width() - $(node).width()) / 2
+      });
+    }, 0);
+  };
+  
+  module.center_node = function(node, within) {
+    module.vcenter_node(node, within);
+    module.hcenter_node(node, within);
+  };
   
   return module;
 })();

@@ -6,14 +6,11 @@ body {
 
 #wrap {
   width: 800px;
-  margin: 0 auto 0 auto;
-  text-align: center;
 }
 
 #playfield {
   width: 800px;
   height: 600px;
-  padding: 20px;
 }
 
 #action_list li:not(.inactive) {
@@ -41,6 +38,26 @@ body {
   width: 0%;
   height: 100%;
   background-color: red;
+}
+
+#scenario_prompt {
+  width: 600px;  
+  height: 400px;
+  background-color: rgba(200, 200, 255, 0.75);
+}
+
+#gameplay_intro {
+  width: 300px;
+  height: 200px;
+  background-color: rgba(255, 200, 200, 0.75);
+}
+
+#scenario_prompt, #gameplay_intro {
+  font-size: 36px;
+  text-align: center;
+  
+  border-radius: 15px;
+  border: 3px solid white;
 }
 
 #scenario_prompt, #gameplay_intro, #action_frame {

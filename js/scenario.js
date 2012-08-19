@@ -50,11 +50,12 @@ var Scenario = (function() {
     // State choreography
     
     function show_prompt() {
-      $('#scenario_prompt')
-        .html(this_scenario.prompt)
-        .fadeIn(500, function() {
+      $('#scenario_prompt .content').html(this_scenario.prompt);
+      u.trigger_event('scenario_prompt_display_start');
+      
+      $('#scenario_prompt').fadeIn(500, function() {
           $('#scenario_prompt').one('click', clear_prompt);
-        });
+      });
     }
     
     function clear_prompt() {
@@ -62,9 +63,10 @@ var Scenario = (function() {
     }
     
     function show_gameplay_intro() {
-      $('#gameplay_intro')
-        .html('GAMEPLAY INTRO TEMP TEXT')
-        .fadeIn(500, clear_gameplay_intro);
+      $('#gameplay_intro .content').html('FLIRT!');
+      u.trigger_event('gameplay_intro_display_start');
+      
+      $('#gameplay_intro').fadeIn(500, clear_gameplay_intro);
     }
     
     function clear_gameplay_intro() {
