@@ -49,7 +49,7 @@ var Stage = (function() {
     }
     
     function clear_prompt() {
-      u.trigger_event('stage_prompt_display_end', start_scenarios);
+      u.trigger_event('stage_prompt_display_end', this_stage, start_scenarios);
     }
     
     // Kick-off

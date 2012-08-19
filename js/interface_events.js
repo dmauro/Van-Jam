@@ -10,15 +10,19 @@ $(function() {
   // Events
   events = {
     stage_enter: function(event, stage) {
-      AUDIO.play('music', stage.music, {loop: true});
       $('#playfield').css({'background-image': 'url(' + './img/bg/' + stage.bg + ')'});      
+    },
+    
+    stage_over: function() {
+      AUDIO.stop('music');      
     },
     
     stage_prompt_display_start: function(event, stage, anim_done_callback) {
       VIEW.scene.set_scene(stage.id + 1, stage.prompt, anim_done_callback);      
     },
     
-    stage_prompt_display_end: function(event, anim_done_callback) {
+    stage_prompt_display_end: function(event, stage, anim_done_callback) {
+      AUDIO.play('music', stage.music, {loop: true});      
       VIEW.scene.hide_scene(anim_done_callback);
     },
     
@@ -60,8 +64,8 @@ $(function() {
       VIEW.timer.hide();
     },
     
-    score_modified: function(event, delta, max) {
-      VIEW.score_meter.modify(delta, max);
+    score_modified: function(event, delta) {    
+      VIEW.score_meter.modify(delta, SETTINGS.max_score);
     },
     
     action_invalidated: function(event, action) {

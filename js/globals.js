@@ -10,7 +10,7 @@ $(function() {
   };
   
   // dependent values
-  SETTINGS.max_gameflow_score = SETTINGS.total_scenarios * SETTINGS.max_scenario_score;
+  SETTINGS.max_score = SETTINGS.total_scenarios * SETTINGS.max_scenario_score;
 });
 
 

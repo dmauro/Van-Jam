@@ -7,7 +7,7 @@ var Gameflow = (function() {
   
   klass.prototype.modify_score = function(score) {
     this.score += score;
-    u.trigger_event('score_modified', score, this.max_score);
+    u.trigger_event('score_modified', score);
   };
 
   klass.prototype.run = function() { 
