@@ -6,6 +6,10 @@ body {
     border:0;
 }
 
+.clear {
+    clear:both;
+}
+
 .temp_play_area {
     position:relative;
     width:800px;
@@ -245,7 +249,7 @@ li.choice {
     display:inline-block;
     margin:0.5em;
     padding:1em 1.5em;
-    background:blue;
+    background:#098Bc2;
     color:#fff;
     text-shadow: 0 -1px 0 rgba(#000, 0.3);
     cursor:pointer;
@@ -254,6 +258,10 @@ li.choice {
 
     &.hightlight {
         @include box-shadow(0 0 5px 2px #29abe2);
+    }
+
+    &:hover {
+        background:#29abe2;
     }
 }
 

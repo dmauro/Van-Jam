@@ -166,7 +166,7 @@
     };
 
     ChoiceList.prototype.on_option_click = function(callback) {
-      return this.node.children('li.choice').click(function(event) {
+      return this.node.children('li.choice').bind("mousedown", function(event) {
         AUDIO.play('sfx', 'button_click');
         return callback($(event.target).attr('data-id'));
       });
@@ -218,10 +218,10 @@
           top: "-=20px"
         }, 200, function() {
           clone.addClass("highlight");
-          if (typeof callback === "function") {
-            callback();
-          }
           return setTimeout(function() {
+            if (typeof callback === "function") {
+              callback();
+            }
             return clone.remove();
           }, 1000);
         });
