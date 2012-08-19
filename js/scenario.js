@@ -119,7 +119,7 @@ var Scenario = (function() {
       }, SETTINGS.per_action_time);
    
       u.trigger_event('countdown_update', valid_actions().length);      
-      u.trigger_event('gameplay_start', [action_labels()]);
+      u.trigger_event('gameplay_start', action_labels());
     }
     
     function end_gameplay() {

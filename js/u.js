@@ -40,20 +40,18 @@ var u = (function() {
   };
   
   // Event defintions: { event: "event_label", handler: function }
-  module.bind_event = function(event_meta, selector) {
-    selector = selector || event_meta.selector || document;    
-    $(selector).bind(event_meta.event, event_meta.handler);
+  module.bind_event = function(event_meta) {
+    $(document).bind(event_meta.event, event_meta.handler);
   };
   
-  module.unbind_event = function(event_meta, selector) {
-    selector = selector || event_meta.selector || document;
-    $(selector).unbind(event_meta.event, event_meta.handler);
+  module.unbind_event = function(event_meta) {
+    $(document).unbind(event_meta.event, event_meta.handler);
   };
   
-  module.trigger_event = function(event, params, selector) {
-    params = _.isArray(params) ? params : [params];
-    selector = selector || document;
-    $(selector).trigger(event, params);
+  module.trigger_event = function() {
+    var params = _.map(arguments, function(a) { return a; });
+    event = params.shift();
+    $(document).trigger(event, params);
   }
   
   return module;
