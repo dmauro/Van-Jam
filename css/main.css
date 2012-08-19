@@ -50,12 +50,12 @@ body {
 
 #ending_good {
   display: none;
-  background-image: url('./img/bg/ending_win.png');
+  background-image: url('../img/bg/ending_win.png');
   z-index:100;
 }
 
 #ending_bad {
   display: none;
-  background-image: url('./img/bg/ending_lose.png');
+  background-image: url('../img/bg/ending_lose.png');
   z-index:100;
 }
