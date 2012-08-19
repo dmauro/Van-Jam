@@ -1,52 +1,113 @@
 @import "mixins.scss";
 
-.health_bar {
-    position:relative;
-    width:558px;
-    height:48px;
-    top:12px;
-    left:12px;
-    background:rgba(#eee, 0.5);
-
-    .fill {
-        float:left;
-        height:100%;
-        width:0%;
-        background:url(../img/health_bar.png);
-    }
-
-    .empty {
-        float:left;
-        height:100%;
-        width:0%;
-        background:url(../img/health_bar_damage.gif);
-    }
+body {
+    margin:0;
+    padding:0;
+    border:0;
 }
 
-.jcvd_bar {
-    float:left;
+#kylie_info {
     position:relative;
-    width:596px;
-    height:192px;
+    width:330px;
+    height:112px;
 
     &:after {
         content:"\00a0";
         position:absolute;
-        left:0;
-        top:0;
         width:100%;
         height:100%;
-        background:url(../img/jcvd_bar.png);
+        left:0;
+        top:0;
+        background:url(../img/kylie_info_bg.png);
     }
-    /*
-    background-image:url(../img/jcvd_bar_left.png), url(../img/jcvd_bar_right.png), url(../img/jcvd_bar_center.png);
-    background-position:left top, right top, center top;
-    background-repeat:no-repeat, no-repeat, repeat-x;
-    */
 
-    .fill,
-    .empty {
-        float:left;
-        background-position:top left;
+    .heart_meter {
+        position:absolute;
+        width:204px;
+        height:25px;
+        left:12px;
+        top:12px;
+        background:rgba(#fff, 0.5);
+
+        .fill {
+            float:right;
+            height:100%;
+            width:0%;
+            background:url(../img/heart_fill.png) right top;
+        }
+
+        .diff {
+            float:left;
+            height:100%;
+            width:0%;
+            background:rgba(#ff005a, 0.4);
+        }
+    }
+
+    .feedback {
+        position:absolute;
+        width:86px;
+        height:86px;
+        right:12px;
+        top:12px;
+        background:#fff;
+
+        .heart,
+        .heart_broken {
+            position:absolute;
+            width:100%;
+            height:32px;
+            top:12px;
+            left:0;
+            background:url(../img/heart.png) top center no-repeat;
+        }
+
+        .heart_broken {
+            background:url(../img/heart_broken.png) top center no-repeat;
+        }
+
+        .score {
+            position:absolute;
+            width:100%;
+            left:0;
+            bottom:5px;
+            margin:0;
+            text-align:center;
+            color:#ff5a5a;
+            font-family:Impact, sans-serif;
+            font-size:28px;
+        }
+    }
+}
+
+#choices {
+    position:absolute;
+    width:600px;
+    height:400px;
+    top:100px;
+    left:100px;
+    background:rgba(#eee, 0.5);
+    border:2px solid #fff;
+    margin:0;
+    list-style-type:none;
+    @include border-radius(15px);
+}
+
+li.choice {
+    position:absolute;
+    top:-1000px;
+    left:-1000px;
+    display:inline-block;
+    margin:0.5em;
+    padding:1em 1.5em;
+    background:blue;
+    color:#fff;
+    text-shadow: 0 -1px 0 rgba(#000, 0.3);
+    cursor:pointer;
+    list-style-type:none;
+    @include border-radius(3em);
+
+    &.hightlight {
+        @include box-shadow(0 0 5px 2px #29abe2);
     }
 }

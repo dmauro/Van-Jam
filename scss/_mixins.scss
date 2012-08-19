@@ -20,6 +20,12 @@
     top:0;
 }
 
+@mixin box-shadow($shadows) {
+    -webkit-box-shadow: $shadows;
+    -moz-box-shadow: $shadows;
+    box-shadow: $shadows;
+}
+
 @mixin box-sizing($type) {
     box-sizing: $type;
     -webkit-box-sizing: $type;
