@@ -7,10 +7,12 @@ body {
 }
 
 #wrap {
-  width: 800px;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
-#playfield {
+#playfield, #ending_good, #ending_bad {
   width: 800px;
   height: 600px;
 }
@@ -43,4 +45,14 @@ body {
   width: 650px;
   position: absolute;
   text-align: center;
+}
+
+#ending_good {
+  display: none;
+  background-image: url('./img/bg/ending_win.png');
+}
+
+#ending_bad {
+  display: none;
+  background-image: url('./img/bg/ending_lose.png');
 }

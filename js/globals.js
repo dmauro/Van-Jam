@@ -1,7 +1,7 @@
 $(function() {
   window.SETTINGS = {
     action_count: 6,
-    per_action_time: 1500,
+    per_action_time: 2500,
     scenario_outro_time: 1000,
     default_action_score: 5,
     gameflow_scenario_count: Math.min(_.keys(SCENARIOS).length, 5),
@@ -11,6 +11,7 @@ $(function() {
   
   // dependent values
   SETTINGS.max_score = SETTINGS.total_scenarios * SETTINGS.max_scenario_score;
+  SETTINGS.good_score = SETTINGS.max_score * 0.5;
 });
 
 

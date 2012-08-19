@@ -28,7 +28,18 @@ var Gameflow = (function() {
     }
     
     function end() {
-      u.unbind_event(gameflow_events.stage_over);
+      u.unbind_event(gameflow_events.stage_over);      
+      if (this_gameflow.score >= SETTINGS.good_score) {
+        $('#ending_good').fadeIn(500);
+        AUDIO.play('music', 'celebration');
+      } else {
+        $('#ending_bad').fadeIn(500);
+        AUDIO.play('music', 'on_a_night_like_this');
+      }
+      
+      $(document).one('click', function() {
+        window.location = './restart.html';
+      });
     }
     
     var current_stage;

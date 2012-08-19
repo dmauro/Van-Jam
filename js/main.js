@@ -1,6 +1,6 @@
 $(function() {
   // Raw position modification
-  var centered = ['#wrap', '#playfield', '#stage_prompt', '#scenario_prompt', '#gameplay_intro'];
+  var centered = ['#ending_good', '#ending_bad', '#playfield', '#stage_prompt', '#scenario_prompt', '#gameplay_intro'];
   _.each(centered, function(c) { u.center_node(c); });
 
   // Audio channels
