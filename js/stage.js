@@ -54,7 +54,7 @@ var Stage = (function() {
     // Kick-off
     u.trigger_event('stage_enter', this);
     AUDIO.play('music', this.music, {loop: true});
-    $('#playfield').css({'background-image': 'url(' + './media/bg/' + this.bg + ')'});
+    $('#playfield').css({'background-image': 'url(' + './img/bg/' + this.bg + ')'});
     
     show_prompt();
   };
