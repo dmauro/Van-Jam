@@ -1,7 +1,7 @@
 $(function() {
   window.SETTINGS = {
     action_count: 6,
-    per_action_time: 2500,
+    per_action_time: 3500,
     scenario_outro_time: 1000,
     default_action_score: 5,
     gameflow_scenario_count: Math.min(_.keys(SCENARIOS).length, 5),
@@ -19,6 +19,9 @@ $(function() {
 // Dependendent settings
 
 var MANIFEST = {
+  bg: [
+    
+  ],
   audio: [
     // music
     'love_at_first_sight_intro_loop',
