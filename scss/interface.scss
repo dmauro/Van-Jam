@@ -111,3 +111,11 @@ li.choice {
         @include box-shadow(0 0 5px 2px #29abe2);
     }
 }
+
+#timer {
+    text-align:center;
+    
+    img {
+        margin-right:3px;
+    }
+}

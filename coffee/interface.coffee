@@ -274,3 +274,27 @@ class gui.HeartMeter
         else
             console.log "Do anything for 0 points?"
 
+class gui.Timer
+    constructor: ->
+        @node = $('#timer')
+
+    set: (num) ->
+        @node.empty()
+        num = Math.round num
+        numbers = num.toString().split ""
+        for number in numbers
+            @node.append $("<img src=\"./img/count_#{number}.png\"></img>")
+
+    hide: ->
+        @node.animate(
+            opacity : 0
+        , 300, =>
+            @node.css(
+                visibility  : "hidden"
+                opacity     : 1
+            )
+        )
+
+    show: ->
+        @node.css "visibility", "visible"
+

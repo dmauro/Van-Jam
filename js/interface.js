@@ -372,4 +372,43 @@
 
   })();
 
+  gui.Timer = (function() {
+
+    function Timer() {
+      this.node = $('#timer');
+    }
+
+    Timer.prototype.set = function(num) {
+      var number, numbers, _i, _len, _results;
+      this.node.empty();
+      num = Math.round(num);
+      numbers = num.toString().split("");
+      _results = [];
+      for (_i = 0, _len = numbers.length; _i < _len; _i++) {
+        number = numbers[_i];
+        _results.push(this.node.append($("<img src=\"./img/count_" + number + ".png\"></img>")));
+      }
+      return _results;
+    };
+
+    Timer.prototype.hide = function() {
+      var _this = this;
+      return this.node.animate({
+        opacity: 0
+      }, 300, function() {
+        return _this.node.css({
+          visibility: "hidden",
+          opacity: 1
+        });
+      });
+    };
+
+    Timer.prototype.show = function() {
+      return this.node.css("visibility", "visible");
+    };
+
+    return Timer;
+
+  })();
+
 }).call(this);
