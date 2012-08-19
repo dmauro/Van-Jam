@@ -43,6 +43,10 @@ var MANIFEST = {
     'yodel',
     'perfect',
     'final',
-    'you'
+    'you',
+    'stage_entry',
+    'button_click',
+    'offensive_effect',
+    'neutral_effect'
   ]
 };

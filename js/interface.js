@@ -34,6 +34,7 @@
       }).animate({
         opacity: 1
       }, 300, function() {
+        AUDIO.play('sfx', 'stage_entry');
         if (typeof callback === "function") {
           return callback();
         }
@@ -165,6 +166,7 @@
     };
 
     ChoiceList.prototype.on_option_click = function(callback) {
+      AUDIO.play('sfx', 'button_click');
       return this.node.children('li.choice').click(function(event) {
         return callback($(event.target).attr('data-id'));
       });
@@ -506,6 +508,15 @@
     };
 
     HeartMeter.prototype.update_score = function(amt) {
+      if (amt === 15) {
+        AUDIO.play('sfx', 'perfect');
+      } else if (amt === -10) {
+        AUDIO.play('sfx', 'offensive_effect');
+      } else if (amt <= 0) {
+        AUDIO.play('sfx', 'giggle');
+      } else if (amt > 0) {
+        AUDIO.play('sfx', 'neutral_effect');
+      }
       if (amt > 0) {
         this.increase(amt);
         return this.show_heart(amt);

@@ -24,6 +24,7 @@ class gui.Scenario
         ).animate(
             opacity : 1
         , 300, =>
+            AUDIO.play 'sfx', 'stage_entry'
             callback() if typeof callback is "function"
         )
 
@@ -119,6 +120,7 @@ class gui.ChoiceList
         @choices[num].remove()
         
     on_option_click: (callback) ->
+        AUDIO.play 'sfx', 'button_click'
         @node.children('li.choice').click (event) ->
             callback $(event.target).attr('data-id')
 
@@ -377,6 +379,15 @@ class gui.HeartMeter
         , 500)
 
     update_score: (amt) ->
+        if amt is 15
+            AUDIO.play 'sfx', 'perfect'
+        else if amt is -10
+            AUDIO.play 'sfx', 'offensive_effect'
+        else if amt <= 0
+            AUDIO.play 'sfx', 'giggle'
+        else if amt > 0
+            AUDIO.play 'sfx', 'neutral_effect'
+
         if amt > 0
             @increase amt
             @show_heart amt
