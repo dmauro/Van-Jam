@@ -1,0 +1,1 @@
+ul.options{position:relative;width:800px;height:600px;background:#eee}ul.options li{position:absolute;top:-1000px;left:-1000px;display:inline-block;margin:0.5em;padding:1em 1.5em;background:blue;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.3);cursor:pointer;-webkit-border-radius:3em;-moz-border-radius:3em;border-radius:3em}
