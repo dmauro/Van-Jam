@@ -1,7 +1,9 @@
 $(function() {
 
   // System init
-  AUDIO.init();
+  AUDIO.init([
+    'i_should_be_so_lucky'
+  ]);
   
   // Gameplay variables
   var INTERVALS = {};
@@ -10,7 +12,7 @@ $(function() {
     per_action_time: 1000,
     scenario_outro_time: 1000,
     vandammism_score: -5,
-    gameflow_scenario_count: _.min([_.keys(SCENARIOS).length, 10]),
+    gameflow_scenario_count: _.min([_.keys(SCENARIOS).length, 1]),
     max_scenario_score: 15, //TODO: make this data-driven
     max_gameflow_score_ratio: 0.5,
     keymap: {
@@ -173,7 +175,7 @@ $(function() {
     } else {
       AUDIO.stop('music');
     }
-    
+
     init_actions_view();
     update_status_view();
 
