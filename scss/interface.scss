@@ -246,6 +246,9 @@ li.choice {
     position:absolute;
     top:-1000px;
     left:-1000px;
+    max-width:300px;
+    max-height:300px;
+    overflow:hidden;
     display:inline-block;
     margin:0.5em;
     padding:1em 1.5em;

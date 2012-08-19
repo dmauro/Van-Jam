@@ -13,6 +13,7 @@ body {
 }
 
 #playfield, #ending_good, #ending_bad {
+  margin-top:10px;
   width: 800px;
   height: 600px;
 }
