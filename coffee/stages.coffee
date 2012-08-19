@@ -15,7 +15,7 @@ window.STAGES = [
       window.SCENARIOS['conversational'],
       window.SCENARIOS['leaving_thailand'],
     ]
-    music: 'love_at_first_sight_groove_loop'
+    music: 'i_should_be_so_lucky'
   ,
     bg: "scene_3.png"
     prompt: 'Oh no! Raul Julia has invited Kylie to his trailer for a "glass of wine."'
@@ -25,6 +25,6 @@ window.STAGES = [
       window.SCENARIOS['fellow_warrior'],
       window.SCENARIOS['dying_raul'],
     ]
-    music: 'love_at_first_sight_groove_loop'
+    music: 'red_blooded_woman'
   ,
 ];

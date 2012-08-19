@@ -23,6 +23,11 @@ var MANIFEST = {
     'love_at_first_sight_intro_loop',
     'love_at_first_sight_groove_loop',    
     'i_should_be_so_lucky',
+    'red_blooded_woman',
+    
+    // ending music
+    'on_a_night_like_this',
+    'celebration',
     
     // sfx
     'one',

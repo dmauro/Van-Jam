@@ -42,7 +42,7 @@ $(function() {
     countdown_update: function(event, value) {
       VIEW.timer.set(value);
       
-      var sfx_map = [false, 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+      var sfx_map = [false, 'one', 'two', 'three', 'four', 'five'];
       if (sfx_map[value]) {
         AUDIO.play('sfx', sfx_map[value]);
       }
