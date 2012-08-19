@@ -1,17 +1,5 @@
 window.gui = {}
 
-$(->
-    window.heart_meter = new gui.HeartMeter()
-    window.choice_list = new gui.ChoiceList 6
-    choice_list.name_option 0, "Go home and be a family man."
-    choice_list.name_option 1, "*Do a split*"
-    choice_list.name_option 2, "*Flex muscles*"
-    choice_list.name_option 3, "Merde"
-    choice_list.name_option 4, "I'm gonna kick M. Bison's ass"
-    choice_list.name_option 5, "*ANIMAL HOWL*"
-    choice_list.go()
-)
-
 get_random_float_between = (min, max) ->
     return Math.random() * (max - min) + min
 
