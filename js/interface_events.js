@@ -5,17 +5,7 @@ $(function() {
     score_meter: new gui.HeartMeter(),
     actions: new gui.ChoiceList(SETTINGS.action_count)    
   };
-  
-  // Raw position modification
-  u.center_node('#wrap');
-  u.center_node('#playfield');  
-  u.center_node('#scenario_prompt');
-  u.center_node('#gameplay_intro');    
-  
-  // Audio channels
-  AUDIO.set_channel_volume('sfx', 100);
-  AUDIO.set_channel_volume('music', 70);
-  
+   
   // Events
   events = {
     scenario_prompt_display_start: function() {
@@ -56,7 +46,7 @@ $(function() {
     },
     
     action_invalidated: function(event, action) {
-      //TODO
+      VIEW.actions.remove_option(action.id);
     },
     
     action_selected: function(event, action) {

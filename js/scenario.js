@@ -1,27 +1,11 @@
 var Scenario = (function() {
-  var klass = function(gameflow, config) {
+  var klass = function(gameflow, config) {    
     this.gameflow = gameflow;
     this.prompt = config.prompt;
-    this.bg = config.bg || 'sagat.jpg';
-    this.music = config.music || 'i_should_be_so_lucky';
 
     // Setup action configurtion data.
-    action_data = config.actions || [];    
+    action_data = config.actions;    
 
-    // Supplement action configuration with defaults
-    var default_count = SETTINGS.action_count - action_data.length;
-    
-    if (default_count > 0) {
-      var default_actions = u.unique_random_elements(DEFAULT_ACTIONS, default_count);
-      
-      _.each(default_actions, function(a) {
-        action_data.push({
-          label: a,
-          score: SETTINGS.default_action_score
-        });
-      });
-    }
-        
     // Create Action objects
     this.actions = _.map(action_data, function(action_config, i) {
       return new Action(i, action_config);
@@ -142,9 +126,7 @@ var Scenario = (function() {
         u.trigger_event('scenario_over');  
       });      
     }
-    // Kick-off   
-    AUDIO.play('music', this.music, {loop: true});
-    $('#playfield').css({'background-image': 'url(' + './media/bg/' + this.bg + ')'});    
+    
     show_prompt();
   };
   

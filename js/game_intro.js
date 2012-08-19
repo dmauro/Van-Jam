@@ -40,6 +40,7 @@ $(function() {
   ];
   
   var lines_remaining;
+  var text_timeout;
   
   var total_time = _.reduce(lines, function(res, line) {
     return res + line.time;
@@ -50,22 +51,14 @@ $(function() {
     current: $('#game_intro_text .b')
   };
   
-  var text_timeout;
-  
-  var events = {
-    click: {
-      event: 'click',
-      handler: function() {
-        clearTimeout(text_timeout);
-        next_line();
-      }
-    }
+  function clear_transition_callbacks() {
+    clearTimeout(text_timeout);      
   }
   
   function switch_text(text) {        
     text_nodes.current.animate({opacity: 0}, 500, function() {
       text_nodes.next.html(text);
-      text_nodes.next.animate({opacity: 1}, 500, function() { u.bind_event(events.click); });
+      text_nodes.next.animate({opacity: 1}, 500);
       
       // Swap current and next nodes    
       var temp = text_nodes.next;
@@ -75,7 +68,7 @@ $(function() {
   }
   
   function next_line() {
-    u.unbind_event(events.click);    
+    clear_transition_callbacks();
     
     if (lines_remaining.length) {
       line = lines_remaining.shift();
@@ -91,14 +84,20 @@ $(function() {
     }
   }
   
-  function end() {    
+  var finish_callback;
+  
+  function end() {
+    clear_transition_callbacks();
+    
     $('#game_intro').fadeOut(500, function() {
-      u.trigger_event("game_intro_done");  
+      u.trigger_event("game_intro_done");
+      if (finish_callback) finish_callback();      
     });
   }
   
-  INTRO.run = function() {
+  INTRO.run = function(callback) {
     AUDIO.play('music', 'love_at_first_sight_intro_loop', {loop: true});
+    finish_callback = callback;
     
     $('#game_intro').fadeIn(500, function() {
       lines_remaining = u.clone(lines);

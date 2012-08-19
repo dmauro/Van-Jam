@@ -42,6 +42,12 @@ body {
   background-color: red;
 }
 
+#stage_prompt {
+  width: 600px;  
+  height: 400px;
+  background-color: rgba(200, 255, 200, 0.75);  
+}
+
 #scenario_prompt {
   width: 600px;  
   height: 400px;
@@ -54,7 +60,7 @@ body {
   background-color: rgba(255, 200, 200, 0.75);
 }
 
-#scenario_prompt, #gameplay_intro {
+#stage_prompt, #scenario_prompt, #gameplay_intro {
   font-size: 36px;
   text-align: center;
   
@@ -62,7 +68,7 @@ body {
   border: 3px solid white;
 }
 
-#scenario_prompt, #gameplay_intro, #action_frame, #game_intro {
+#stage_prompt, #scenario_prompt, #gameplay_intro, #action_frame, #game_intro {
   display: none;
 }
 

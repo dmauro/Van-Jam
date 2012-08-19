@@ -1,6 +1,7 @@
 var Gameflow = (function() {
   var klass = function() {
-    this.sessions = 0;
+    this.stage_data = u.clone(STAGES);
+    this.score = 0;
   };
   
   klass.prototype.modify_score = function(score) {
@@ -8,43 +9,40 @@ var Gameflow = (function() {
     u.trigger_event('score_modified', score, this.max_score);
   };
 
-  klass.prototype.run = function() {
+  klass.prototype.run = function() { 
     var this_gameflow = this;
     
-    this.sessions += 1;
-    this.scenario_data = u.clone(u.unique_random_elements(_.values(SCENARIOS), SETTINGS.gameflow_scenario_count));
-    this.max_score = SETTINGS.max_scenario_score * this.scenario_data.length * SETTINGS.max_gameflow_score_ratio;    
-    this.score = 0;
-    
     gameflow_events = {
-      scenario_over: {
-        event: 'scenario_over',
+      stage_over: {
+        event: 'stage_over',
         handler: function() {          
-          if (!this_gameflow.next_scenario()) end();
+          if (!next_stage()) end();
         }
       }
     }
     
-    function start() {
-      u.bind_event(gameflow_events.scenario_over);
-      this_gameflow.next_scenario();
+    function start() {     
+      u.bind_event(gameflow_events.stage_over);
+      next_stage();
     }
     
     function end() {
-      u.unbind_event(gameflow_events.scenario_over);
+      u.unbind_event(gameflow_events.stage_over);
     }
+    
+    var current_stage;
+    
+    function next_stage() {
+      if (!this_gameflow.stage_data.length) return null;
+      current_stage = new Stage(this_gameflow, this_gameflow.stage_data.shift());
+      current_stage.run();
+      return current_stage;
+    }    
     
     ///////////
     // Kick-off
     
     start();
-  }
-  
-  klass.prototype.next_scenario = function() {    
-    if (!this.scenario_data.length) return null;
-    this.current_scenario = new Scenario(this, this.scenario_data.shift());
-    this.current_scenario.run();
-    return this.current_scenario;
   }
   
   return klass;
