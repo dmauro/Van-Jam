@@ -6,8 +6,14 @@ body {
     border:0;
 }
 
+#hud {
+    position: relative;
+}
+
 #kylie_info {
-    position:relative;
+    position:absolute;
+    
+    right: 0;
     width:330px;
     height:112px;
 
@@ -81,7 +87,7 @@ body {
 }
 
 #choices {
-    position:absolute;
+    position:relative;
     width:600px;
     height:400px;
     top:100px;
@@ -113,9 +119,6 @@ li.choice {
 }
 
 #timer {
-    text-align:center;
-    
-    img {
-        margin-right:3px;
-    }
+    position: absolute;
+    left: 0;
 }

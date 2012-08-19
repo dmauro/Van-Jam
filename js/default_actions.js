@@ -5,6 +5,6 @@ var DEFAULT_ACTIONS = [
   '"My momma took one!"',
   '"How appropriate, you fight like a cow."',
   '"I dunno. You tell me"',
-  '&lt;does the splits&gt;',
-  '&lt;flexes bicep&gt;'
+  '<does the splits>',
+  '<flexes bicep>'
 ];

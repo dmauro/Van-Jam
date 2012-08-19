@@ -10,18 +10,22 @@ class gui.ChoiceList
     constructor: (@num_options=6) ->
         @node = $('#choices')
         @width = @node.width()
-        @height = @node.height()
+        @height = @node.height()       
         @choices = []
         @create_options()
 
     create_options: ->
-        for i in [1..@num_options]
-            node = $('<li class="choice"></li>')
+        for i in [0...@num_options]
+            node = $('<li class="choice" data-id="' + i + '"></li>')
             @node.append node
             @choices.push new gui.Choice node, @
 
     name_option: (num, text) ->
         @choices[num].change_text text
+        
+    on_option_click: (callback) ->
+        @node.children('li.choice').click (event) ->
+            callback $(event.target).attr('data-id')
 
     place_options: ->
         for choice in @choices
@@ -126,8 +130,8 @@ class gui.Choice
         @vector_y = if (Math.random() > 0.5) then (@vel - Math.abs(@vector_x)) else -(@vel - Math.abs(@vector_x))
 
     is_valid_location: (x, y) ->
-        return false if x < 0 or x > @choice_list.width - @width
-        return false if y < 0 or y > @choice_list.height - @height
+        return false if x < 0 or @choice_list.width - @width < x
+        return false if y < 0 or @choice_list.height - @height < y
         return false if @check_for_collision x, y
         return true
 
@@ -190,6 +194,15 @@ class gui.HeartMeter
     set_bar_temp_width: (amt) ->
         @bar_node_temp.css "width", "#{amt}px"
 
+    modify: (delta, max) ->
+        pct = 100 * delta/max
+        if delta < 0
+            @decrease(-1 * pct)
+            @show_broken_heart(-1 * delta)
+        else
+            @increase(pct)
+            @show_heart(delta)
+
     increase: (amt) ->
         amt = Math.min amt, @total - @current
         percentage_jump = amt/@total * 100
@@ -205,7 +218,7 @@ class gui.HeartMeter
             , 300, "linear")
         , 500)
 
-    reduce: (amt) ->
+    decrease: (amt) ->
         amt = Math.min amt, @current
         percentage_drop = amt/@total * 100
         old_percentage = @get_percentage()
@@ -269,7 +282,7 @@ class gui.HeartMeter
             @increase amt
             @show_heart amt
         else if amt < 0
-            @reduce Math.abs amt
+            @decrease Math.abs amt
             @show_broken_heart amt
         else
             console.log "Do anything for 0 points?"

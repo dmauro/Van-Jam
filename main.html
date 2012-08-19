@@ -3,7 +3,9 @@
 
   <head>
     <title>STREET FIGHTER: A Romance</title>
+    
     <link rel='stylesheet' type='text/css' href='./css/main.css' />
+    <link rel='stylesheet' type='text/css' href='./css/interface.css' />
     
     <!-- external libs -->
     <script type='text/javascript' src='./js/ext/jquery.js'></script>
@@ -23,6 +25,8 @@
     <script type='text/javascript' src='./js/action.js'></script>
     <script type='text/javascript' src='./js/scenario.js'></script>
     <script type='text/javascript' src='./js/gameflow.js'></script>
+    <script type='text/javascript' src='./js/interface.js'></script>
+    <script type='text/javascript' src='./js/view.js'></script>
     
     <!-- game -->
     <script type='text/javascript' src='./js/main.js'></script>
@@ -34,17 +38,24 @@
       <div id='playfield'>
         
         <div id='hud'>
-          <div id='player_hud'>
-            <div id='player_portrait'></div>
-            <div id='player_timer'></div>
+          <div id='timer'></div>
+          
+          <div id='kylie_info'>
+              <div class='feedback'></div>
+              <div class='heart_meter'>
+                  <div class='fill'>
+                      <div class='diff'></div>
+                  </div>
+              </div>
           </div>
-          <div id='npc_hud'></div>
         </div>
         
         <div id='scenario_prompt'></div>
+        
         <div id='gameplay_intro'></div>
+        
         <div id='action_frame'>
-          <ul id='action_list'></ul>
+          <ul id='choices'></ul>
         </div>
                 
       </div>

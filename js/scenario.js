@@ -4,7 +4,7 @@ var Scenario = (function() {
     this.prompt = config.prompt;
     this.bg = config.bg || 'sagat.jpg';
     this.music = config.music || 'i_should_be_so_lucky';
-console.log(this)
+
     // Setup action configurtion data.
     action_data = config.actions || [];    
 
@@ -42,11 +42,10 @@ console.log(this)
       }, []);   
     }
     
-    //TEMP
-    function update_view() {
-      $('#player_timer').html(valid_actions().length);
+    function action_labels() {      
+      return _.map(this_scenario.actions, function(a) { return a.label; });
     }
-    
+
     /////////////////////
     // State choreography
     
@@ -77,6 +76,14 @@ console.log(this)
     }
     
     var gameplay_events = {
+      option_clicked: {
+        event: 'option_clicked',
+        handler: function(event, id) {
+          var action = this_scenario.actions[id];
+          if (!action.valid) return;
+          action.select();
+        }
+      },
       action_selected: {
         event: 'action_selected',
         handler: function(event, action) {
@@ -86,8 +93,18 @@ console.log(this)
       },
     };
     
-    function start_gameplay() {     
-      u.bind_event(gameplay_events.action_selected);
+    var termination_events = {
+      actions_outro_done: {
+        event: 'actions_outro_done',
+        handler: function() {        
+          finish();
+        }
+      }
+    };
+    
+    function start_gameplay() {
+      _.each(gameplay_events, function(e) { u.bind_event(e); });
+      _.each(termination_events, function(e) { u.bind_event(e); });
       
       // Set countdown timer
       countdownInverval = setInterval(function() {
@@ -97,30 +114,32 @@ console.log(this)
           actions.shift().select();
         } else {
           u.random_element(actions).invalidate();
-          
-          //TEMP
-          update_view();          
-        }
+          u.trigger_event('countdown_update', actions.length - 1);
+        }        
       }, SETTINGS.per_action_time);
-      
-      //TEMP
-      update_view();
+   
+      u.trigger_event('countdown_update', valid_actions().length);      
+      u.trigger_event('gameplay_start', [action_labels()]);
     }
     
     function end_gameplay() {
-      // Clear callbacks
-      u.unbind_event(gameplay_events.action_selected);
-      clearInterval(countdownInverval);      
+      // Bind all gameplay events
+      _.each(gameplay_events, function(e) { u.unbind_event(e); });
       
-      $('#action_frame').fadeOut(500, function() {
-        // Clear view
-        $('#action_list').html('');
-        
+      // Clear countdown timer
+      clearInterval(countdownInverval);
+      
+      u.trigger_event('gameplay_end');
+    }
+    
+    function finish() {
+      _.each(termination_events, function(e) { u.unbind_event(e); });
+      
+      $('#action_frame').fadeOut(500, function() {       
         // Broadcast event
         u.trigger_event('scenario_over');  
-      });
+      });      
     }
-        
     // Kick-off   
     AUDIO.play('music', this.music, {loop: true});
     $('#playfield').css({'background-image': 'url(' + './media/bg/' + this.bg + ')'});    

@@ -26,8 +26,8 @@
     ChoiceList.prototype.create_options = function() {
       var i, node, _i, _ref, _results;
       _results = [];
-      for (i = _i = 1, _ref = this.num_options; 1 <= _ref ? _i <= _ref : _i >= _ref; i = 1 <= _ref ? ++_i : --_i) {
-        node = $('<li class="choice"></li>');
+      for (i = _i = 0, _ref = this.num_options; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        node = $('<li class="choice" data-id="' + i + '"></li>');
         this.node.append(node);
         _results.push(this.choices.push(new gui.Choice(node, this)));
       }
@@ -36,6 +36,12 @@
 
     ChoiceList.prototype.name_option = function(num, text) {
       return this.choices[num].change_text(text);
+    };
+
+    ChoiceList.prototype.on_option_click = function(callback) {
+      return this.node.children('li.choice').click(function(event) {
+        return callback($(event.target).attr('data-id'));
+      });
     };
 
     ChoiceList.prototype.place_options = function() {
@@ -176,10 +182,10 @@
     };
 
     Choice.prototype.is_valid_location = function(x, y) {
-      if (x < 0 || x > this.choice_list.width - this.width) {
+      if (x < 0 || this.choice_list.width - this.width < x) {
         return false;
       }
-      if (y < 0 || y > this.choice_list.height - this.height) {
+      if (y < 0 || this.choice_list.height - this.height < y) {
         return false;
       }
       if (this.check_for_collision(x, y)) {
@@ -272,6 +278,18 @@
       return this.bar_node_temp.css("width", "" + amt + "px");
     };
 
+    HeartMeter.prototype.modify = function(delta, max) {
+      var pct;
+      pct = 100 * delta / max;
+      if (delta < 0) {
+        this.decrease(-1 * pct);
+        return this.show_broken_heart(-1 * delta);
+      } else {
+        this.increase(pct);
+        return this.show_heart(delta);
+      }
+    };
+
     HeartMeter.prototype.increase = function(amt) {
       var old_width, percentage_jump, width_diff,
         _this = this;
@@ -289,7 +307,7 @@
       }, 500);
     };
 
-    HeartMeter.prototype.reduce = function(amt) {
+    HeartMeter.prototype.decrease = function(amt) {
       var new_percentage, old_percentage, old_width, percentage_drop, width_diff,
         _this = this;
       amt = Math.min(amt, this.current);
@@ -361,7 +379,7 @@
         this.increase(amt);
         return this.show_heart(amt);
       } else if (amt < 0) {
-        this.reduce(Math.abs(amt));
+        this.decrease(Math.abs(amt));
         return this.show_broken_heart(amt);
       } else {
         return console.log("Do anything for 0 points?");
