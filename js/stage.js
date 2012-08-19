@@ -1,10 +1,10 @@
 var Stage = (function() {
-  var klass = function(gameflow, config) {
+  var klass = function(id, config, gameflow) {
     this.gameflow = gameflow;
     this.prompt = config.prompt;
     this.scenario_data = u.clone(config.scenarios);
-    this.bg = config.bg || 'sagat.jpg';
-    this.music = config.music || 'i_should_be_so_lucky';  
+    this.bg = config.bg;
+    this.music = config.music;  
   };
     
   klass.prototype.run = function() {    
@@ -51,7 +51,8 @@ var Stage = (function() {
       $('#stage_prompt').fadeOut(500, start_scenarios);
     }
     
-    // Kick-off   
+    // Kick-off
+    u.trigger_event('stage_enter', this);
     AUDIO.play('music', this.music, {loop: true});
     $('#playfield').css({'background-image': 'url(' + './media/bg/' + this.bg + ')'});
     
