@@ -166,8 +166,8 @@
     };
 
     ChoiceList.prototype.on_option_click = function(callback) {
-      AUDIO.play('sfx', 'button_click');
       return this.node.children('li.choice').click(function(event) {
+        AUDIO.play('sfx', 'button_click');
         return callback($(event.target).attr('data-id'));
       });
     };
@@ -212,8 +212,7 @@
         opacity: 0
       }, 200, function() {
         _this.node.css({
-          visibility: "hidden",
-          opacity: 1
+          visibility: "hidden"
         });
         return clone.animate({
           top: "-=20px"
@@ -241,7 +240,10 @@
       }
       this.place_options();
       this.move();
-      return this.node.css("visibility", "visible");
+      return this.node.css({
+        visibility: "visibile",
+        opacity: 1
+      });
     };
 
     return ChoiceList;

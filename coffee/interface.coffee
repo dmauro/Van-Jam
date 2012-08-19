@@ -120,8 +120,8 @@ class gui.ChoiceList
         @choices[num].remove()
         
     on_option_click: (callback) ->
-        AUDIO.play 'sfx', 'button_click'
         @node.children('li.choice').click (event) ->
+            AUDIO.play 'sfx', 'button_click'
             callback $(event.target).attr('data-id')
 
     place_options: ->
@@ -153,7 +153,6 @@ class gui.ChoiceList
         , 200, =>
             @node.css(
                 visibility  : "hidden"
-                opacity     : 1
             )
 
             # Give the selected option a little vertical boost
@@ -176,7 +175,10 @@ class gui.ChoiceList
             )
         @place_options()
         @move()
-        @node.css "visibility", "visible"
+        @node.css(
+            visibility  : "visibile"
+            opacity     : 1
+        )
 
 class gui.Choice
     constructor: (@node, @choice_list) ->
