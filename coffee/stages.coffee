@@ -2,9 +2,9 @@ window.STAGES = [
     bg: "scene_1.png"
     prompt: "Script rehearsal time! Impress Kylie with your acting ability..."
     scenarios: [
-      window.SCENARIOS['temp1'],
-      window.SCENARIOS['temp2'],
-      window.SCENARIOS['temp3'],
+      window.SCENARIOS['how_are_you'],
+      window.SCENARIOS['stealth_compromised'],
+      window.SCENARIOS['leaving'],
     ]
     music: 'love_at_first_sight_groove_loop'
   ,
