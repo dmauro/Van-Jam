@@ -57,3 +57,114 @@
         border-radius: $tl $tr $br $bl;
     }
 }
+
+@mixin arrow($dir, $size:20px, $border_size: 0, $border_color: #aaa, $bgcolor: #fff) {
+    @if $dir == none {
+        &:before,
+        &:after {
+            content:"";
+            border:0;
+        }
+    } @else {
+        position:relative;
+        @if $border_size > 0 {
+            &:before,
+            &:after {
+                content:"\00a0";
+                position:absolute;
+                width:0;
+                height:0;
+                pointer-events:none;
+                @if $dir == left {
+                    right:100%;
+                    top:50%;
+                    left:auto;
+                    bottom:auto;
+                    border:solid transparent
+                } @else if $dir == right {
+                    left:100%;
+                    top:50%;
+                    right:auto;
+                    bottom:auto;
+                    border:solid transparent
+                } @else if $dir == top {
+                    bottom:100%;
+                    left:50%;
+                    right:auto;
+                    top:auto;
+                    border:transparent solid;
+                } @else if $dir == bottom {
+                    top:100%;
+                    left:50%;
+                    right:auto;
+                    bottom:auto;
+                    border:transparent solid;
+                }
+            }
+            &:after {
+                border-width:$size;
+                @if $dir == left {
+                    margin-top:-$size;
+                    border-right-color:$bgcolor;
+                } @else if $dir == right {
+                    margin-top:-$size;
+                    border-left-color:$bgcolor;
+                } @else if $dir == top {
+                    margin-left:-$size;
+                    border-bottom-color:$bgcolor;
+                } @else if $dir == bottom {
+                    margin-left:-$size;
+                    border-top-color:$bgcolor;
+                }
+            }
+            &:before {
+                $border_offset:$size + $border_size * 1.41421356;
+                border-width:$border_offset;
+                @if $dir == left {
+                    margin-top:-$border_offset;
+                    border-right-color:$border_color;
+                } @else if $dir == right {
+                    margin-top:-$border_offset;
+                    border-left-color:$border_color;
+                } @else if $dir == top {
+                    margin-left:-$border_offset;
+                    border-bottom-color:$border_color;
+                } @else if $dir == bottom {
+                    margin-left:-$border_offset;
+                    border-top-color:$border_color;
+                }
+            }
+        } @else {
+            &:after {
+                content:"\00a0";
+                position:absolute;
+                width:0;
+                height:0;
+                pointer-events:none;
+                border:solid transparent;
+                border-width:$size;
+                @if $dir == left {
+                    right:100%;
+                    top:50%;
+                    margin-top:-$size;
+                    border-right-color:$bgcolor;
+                } @else if $dir == right {
+                    left:100%;
+                    top:50%;
+                    margin-top:-$size;
+                    border-left-color:$bgcolor;
+                } @else if $dir == top {
+                    left:50%;
+                    bottom:100%;
+                    margin-left:-$size;
+                    border-bottom-color:$bgcolor;
+                } @else if $dir == bottom {
+                    left:50%;
+                    top:100%;
+                    margin-left:-$size;
+                    border-top-color:$bgcolor;
+                }
+            }
+        }
+    }
+}

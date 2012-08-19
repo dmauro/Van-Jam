@@ -6,6 +6,98 @@ get_random_float_between = (min, max) ->
 get_random_int_between = (min, max) ->
     return Math.round get_random_float_between min, max
 
+class gui.Scenario
+    constructor: (@total_days=3) ->
+        @node = $('#scenario')
+        @scene_node = $('.scene', @node)
+        @prompt_node = $('.prompt', @node)
+        @round_node = $('.round', @node)
+
+    set_scene: (day_num, description, callback) ->
+        $('.days_remaining', @scene_node).text(@total_days - day_num)
+        $('.day_count', @scene_node).append("<img src=\"img\/day_#{day_num}.png\" class=\"temp\">")
+        $('p.description', @scene_node).text description
+        @node.css "visibility", "visibile"
+        @scene_node.css(
+            opacity     : 0
+            visibility  : "visible"
+        ).animate(
+            opacity : 1
+        , 300, =>
+            callback() if typeof callback is "function"
+        )
+
+    hide_scene: (callback) ->
+        @scene_node.animate(
+            opacity : 0
+        , 300, =>
+            $('.days_remaining', @scene_node).text ""
+            $('.day_count', @scene_node).children('.temp').remove()
+            $('p.description', @scene_node).text ""
+            @node.css "visibility", "hidden"
+            callback() if typeof callback is "function"
+        )
+
+    show_prompt: (prompt, callback, is_kylie=true) ->
+        @node.css "visibility", "visible"
+        $('.call .message', @prompt_node).text prompt
+        $('.call .avatar', @prompt_node).removeClass("raul")
+        $('.call .avatar', @prompt_node).addClass("raul") unless is_kylie
+        @prompt_node.css(
+            visibility  : "visible"
+            opacity     : 0
+        ).animate(
+            opacity : 1
+        , 300, =>
+            callback() if typeof callback is "function"
+        )
+
+    hide_prompt: ->
+        @prompt_node.animate(
+            opacity : 0
+        , 300, =>
+            $('.call .message', @prompt_node).text ""
+            @prompt_node.css "visibility", "hidden"
+            callback() if typeof callback is "function"
+        )
+
+    start_round: (round_num, callback) ->
+        round_count = $('.round_count', @round_node)
+        flirt = $('.flirt', @round_node)
+        round_count.append("<img src=\"img/round_#{round_num}.png\">")
+        round_count.css(
+            visibility  : "visible"
+            opacity     : 0
+        )
+        flirt.css "visibility", "hidden"
+        @node.css "visibility", "visible"
+        @round_node.css "visibility", "visible"
+        round_fade_time = 250
+        round_wait_time = 1000
+        flirt_wait_time = 600
+        round_count.animate(
+            opacity : 1
+        , round_fade_time, =>
+            setTimeout(=>
+                round_count.animate(
+                    opacity : 0
+                , round_fade_time, =>
+                    round_count.empty()
+                    round_count.css "visibility", "hidden"
+                    # Now show FLIRT
+                    flirt.css "visibility", "visible"
+                    setTimeout(=>
+                        flirt.css "visibility", "hidden"
+                        @round_node.css "visibility", "hidden"
+                        @node.css "visibility", "hidden"
+                        callback() if typeof callback is "function"
+                    , flirt_wait_time)
+                )
+            , round_wait_time)
+        )
+
+
+
 class gui.ChoiceList
     constructor: (@num_options=6) ->
         @node = $('#choices')

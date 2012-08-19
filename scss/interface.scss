@@ -6,8 +6,146 @@ body {
     border:0;
 }
 
+.temp_play_area {
+    position:relative;
+    width:800px;
+    height:600px;
+    margin:20px;
+    background:blue;
+}
+
 #hud {
     position: relative;
+}
+
+#scenario {
+    @include fullsize();
+
+    .scene {
+        @include fullsize();
+        @include box-sizing(border-box);
+        padding:20px;
+        visibility:hidden;
+
+        .day_count {
+            float:left;
+            position:relative;
+            
+            img.temp {
+                position:relative;
+                left:-24px;
+                top:-12px;
+            }
+        }
+
+        .scene_description {
+            float:right;
+            width:360px;
+            background:rgba(#fff, 0.75);
+            padding:15px;
+
+            p {
+                font-size:18px;
+                font-family:Arial, Helvetica, sans-serif;
+
+                span {
+                    font-weight:bold;
+                }
+            }
+        }
+
+        .click_to_continue {
+            display:inline-block;
+            position:absolute;
+            left:300px;
+            top:270px;
+            padding:20px 40px;
+            background:rgba(#fff, 0.75);
+            font-size:18px;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+    }
+
+    .prompt {
+        position:absolute;
+        visibility:hidden;
+        width:760px;
+        height:560px;
+        margin:20px;
+        padding:20px;
+        background:rgba(#fff, 0.75);
+        @include box-sizing(border-box);
+
+        $msg_bg:rgba(#fff, 0.75);
+
+        .avatar {
+            width:150px;
+            height:150px;
+            border:2px solid #fff;
+            background:#000;
+        }
+
+        .message {
+            padding:20px;
+            background:$msg_bg;
+            width:460px;
+            font-size:24px;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        .call {
+            .avatar {
+                float:right;
+                background:url(../img/avatar_km.png);
+
+                &.raul {
+                    background:url(../img/avatar_rj.png);
+                }
+            }
+
+            .message {
+                float:left;
+                @include arrow(right, 20px, 0, #aaa, $msg_bg);
+            }
+        }
+
+        .response {
+            .avatar {
+                float:left;
+                background:url(../img/avatar_jcvd.png);
+            }
+
+            .message {
+                float:right;
+                text-align:center;
+                @include arrow(left, 20px, 0, #aaa, $msg_bg);
+            }
+        }
+    }
+
+    .round {
+        visibility:hidden;
+
+        .flirt {
+            @include fullsize();
+            background:url(../img/flirt.png) center center no-repeat;
+            background-size:auto;
+        }
+
+        .round_count {
+            position:absolute;
+            width:280px;
+            height:60px;
+            left:260px;
+            top:270px;
+            background:url(../img/round_x.png);
+
+            img {
+                position:relative;
+                left:83%;
+            }
+        }
+    }
 }
 
 #kylie_info {

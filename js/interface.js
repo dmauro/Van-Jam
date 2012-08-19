@@ -12,6 +12,128 @@
     return Math.round(get_random_float_between(min, max));
   };
 
+  gui.Scenario = (function() {
+
+    function Scenario(total_days) {
+      this.total_days = total_days != null ? total_days : 3;
+      this.node = $('#scenario');
+      this.scene_node = $('.scene', this.node);
+      this.prompt_node = $('.prompt', this.node);
+      this.round_node = $('.round', this.node);
+    }
+
+    Scenario.prototype.set_scene = function(day_num, description, callback) {
+      var _this = this;
+      $('.days_remaining', this.scene_node).text(this.total_days - day_num);
+      $('.day_count', this.scene_node).append("<img src=\"img\/day_" + day_num + ".png\" class=\"temp\">");
+      $('p.description', this.scene_node).text(description);
+      this.node.css("visibility", "visibile");
+      return this.scene_node.css({
+        opacity: 0,
+        visibility: "visible"
+      }).animate({
+        opacity: 1
+      }, 300, function() {
+        if (typeof callback === "function") {
+          return callback();
+        }
+      });
+    };
+
+    Scenario.prototype.hide_scene = function(callback) {
+      var _this = this;
+      return this.scene_node.animate({
+        opacity: 0
+      }, 300, function() {
+        $('.days_remaining', _this.scene_node).text("");
+        $('.day_count', _this.scene_node).children('.temp').remove();
+        $('p.description', _this.scene_node).text("");
+        _this.node.css("visibility", "hidden");
+        if (typeof callback === "function") {
+          return callback();
+        }
+      });
+    };
+
+    Scenario.prototype.show_prompt = function(prompt, callback, is_kylie) {
+      var _this = this;
+      if (is_kylie == null) {
+        is_kylie = true;
+      }
+      this.node.css("visibility", "visible");
+      $('.call .message', this.prompt_node).text(prompt);
+      $('.call .avatar', this.prompt_node).removeClass("raul");
+      if (!is_kylie) {
+        $('.call .avatar', this.prompt_node).addClass("raul");
+      }
+      return this.prompt_node.css({
+        visibility: "visible",
+        opacity: 0
+      }).animate({
+        opacity: 1
+      }, 300, function() {
+        if (typeof callback === "function") {
+          return callback();
+        }
+      });
+    };
+
+    Scenario.prototype.hide_prompt = function() {
+      var _this = this;
+      return this.prompt_node.animate({
+        opacity: 0
+      }, 300, function() {
+        $('.call .message', _this.prompt_node).text("");
+        _this.prompt_node.css("visibility", "hidden");
+        if (typeof callback === "function") {
+          return callback();
+        }
+      });
+    };
+
+    Scenario.prototype.start_round = function(round_num, callback) {
+      var flirt, flirt_wait_time, round_count, round_fade_time, round_wait_time,
+        _this = this;
+      round_count = $('.round_count', this.round_node);
+      flirt = $('.flirt', this.round_node);
+      round_count.append("<img src=\"img/round_" + round_num + ".png\">");
+      round_count.css({
+        visibility: "visible",
+        opacity: 0
+      });
+      flirt.css("visibility", "hidden");
+      this.node.css("visibility", "visible");
+      this.round_node.css("visibility", "visible");
+      round_fade_time = 250;
+      round_wait_time = 1000;
+      flirt_wait_time = 600;
+      return round_count.animate({
+        opacity: 1
+      }, round_fade_time, function() {
+        return setTimeout(function() {
+          return round_count.animate({
+            opacity: 0
+          }, round_fade_time, function() {
+            round_count.empty();
+            round_count.css("visibility", "hidden");
+            flirt.css("visibility", "visible");
+            return setTimeout(function() {
+              flirt.css("visibility", "hidden");
+              _this.round_node.css("visibility", "hidden");
+              _this.node.css("visibility", "hidden");
+              if (typeof callback === "function") {
+                return callback();
+              }
+            }, flirt_wait_time);
+          });
+        }, round_wait_time);
+      });
+    };
+
+    return Scenario;
+
+  })();
+
   gui.ChoiceList = (function() {
 
     function ChoiceList(num_options) {
