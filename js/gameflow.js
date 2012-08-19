@@ -1,6 +1,8 @@
 var Gameflow = (function() {
   var klass = function() {
     this.stage_data = u.clone(STAGES);
+//debugger    
+console.log(this.stage_data);    
     this.score = 0;
     this.next_stage_id = 0;
   };

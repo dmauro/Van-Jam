@@ -4,6 +4,7 @@ var Stage = (function() {
     this.gameflow = gameflow;
     this.prompt = config.prompt;
     this.scenario_data = u.clone(config.scenarios);
+console.log(this.scenario_data);    
     this.bg = config.bg;
     this.music = config.music;
     this.is_raul = config.is_raul;
