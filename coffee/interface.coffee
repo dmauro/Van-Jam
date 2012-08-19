@@ -22,6 +22,9 @@ class gui.ChoiceList
 
     name_option: (num, text) ->
         @choices[num].change_text text
+
+    remove_option: (num) ->
+        @choices[num].remove()
         
     on_option_click: (callback) ->
         @node.children('li.choice').click (event) ->
@@ -89,6 +92,9 @@ class gui.Choice
         @set_size_explicit()
         @set_random_direction()
 
+    remove: ->
+        @node.css "visibility", "hidden"
+
     set_size_explicit: ->
         @node.css(
             width   : @node.width()
@@ -106,6 +112,7 @@ class gui.Choice
         @set_size_explicit()
 
     move: ->
+        @node.css "visibility", "visible"
         clearInterval(@movement_interval) if @movement_interval
         do_movement = =>
             x = @x + @vector_x

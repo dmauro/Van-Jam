@@ -38,6 +38,10 @@
       return this.choices[num].change_text(text);
     };
 
+    ChoiceList.prototype.remove_option = function(num) {
+      return this.choices[num].remove();
+    };
+
     ChoiceList.prototype.on_option_click = function(callback) {
       return this.node.children('li.choice').click(function(event) {
         return callback($(event.target).attr('data-id'));
@@ -132,6 +136,10 @@
       this.set_random_direction();
     }
 
+    Choice.prototype.remove = function() {
+      return this.node.css("visibility", "hidden");
+    };
+
     Choice.prototype.set_size_explicit = function() {
       this.node.css({
         width: this.node.width(),
@@ -153,6 +161,7 @@
     Choice.prototype.move = function() {
       var do_movement,
         _this = this;
+      this.node.css("visibility", "visible");
       if (this.movement_interval) {
         clearInterval(this.movement_interval);
       }
