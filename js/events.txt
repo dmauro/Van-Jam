@@ -1,7 +1,0 @@
-score_modified(score)
-countdown_tick(current time)
-
-prompt_intro_done
-prompt_outro_done
-get_ready_intro_done
-get_ready_outro_done
