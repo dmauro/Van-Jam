@@ -10,4 +10,4 @@ David Mauro
 Jen Taclas
 Jeff Lee
 
-Thanks to Jessen Jurado and Babycasltes.
+Thanks to Jessen Jurado, Babycastles, and Eyebeam.
