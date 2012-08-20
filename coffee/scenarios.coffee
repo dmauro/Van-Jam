@@ -35,7 +35,7 @@ window.SCENARIOS =
                 label   : "Luckily, you've driven me crazy. . . So I'm going to do it."
                 score   : SCORES.smooth
             ,
-                label   : "[upper cut a movie extra]"
+                label   : "[uppercut a movie extra]"
                 score   : SCORES.bad_ass
             ,
                 label   : "What a woman!"
@@ -60,7 +60,7 @@ window.SCENARIOS =
                 label   : "I guess you've earned your passport home."
                 score   : SCORES.bad_ass
             ,
-                label   : "Ohh, I didn't know you cared,"
+                label   : "Ohh, I didn't know you cared."
                 score   : SCORES.sweet
             ,
                 label   : "[flip off camera]"
@@ -107,7 +107,7 @@ window.SCENARIOS =
               label : "My biggest orgasm - not in a sexual way - is to walk with my dogs on the beach."
               score : SCORES.sweet
             ,
-              label : "[Do the splits]"
+              label : "[do the splits]"
               score : 0
             ,
               label : "I am fascinated by air. If you remove the air from the sky, all the birds would fall to the ground. And all the planes, too."
@@ -129,7 +129,7 @@ window.SCENARIOS =
               label : "Give me a chance? My mama took one."
               score : SCORES.sweet
             ,
-              label : "Perhaps I shouldn't repeat this conversation."
+              label : "Ceci n'est pas une pipe."
               score : 0
             ,
               label : "Our friends who have died here will have died for nothing."
