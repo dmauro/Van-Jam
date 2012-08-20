@@ -12,9 +12,11 @@ var GAME_TEXT_ASSETS = {
       'js/ext/jquery.js',
       'js/ext/underscore.js',
       'js/ext/soundmanager2-nodebug-jsmin.js',
+      //'js/ext/soundmanager2-jsmin.js', // for debugging SFX
       
       // generic libs
-      'js/u.js',            
+      'js/u.js',
+      'js/event.js',
   
       // config
       'js/scenarios.js',

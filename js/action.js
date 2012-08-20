@@ -9,12 +9,12 @@ var Action = (function() {
   klass.prototype.invalidate = function() {
     this.valid = false;
     $(this.elem).addClass('invalid');
-    u.trigger_event('action_invalidated', this);
+    EVENT.trigger('action_invalidated', this);
   };
   
   klass.prototype.select = function() {
     $(this.elem).addClass('selected');
-    u.trigger_event('action_selected', this);
+    EVENT.trigger('action_selected', this);
   };
   
   return klass;

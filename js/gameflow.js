@@ -1,13 +1,13 @@
 var Gameflow = (function() {
   var klass = function() {
-    this.stage_data = u.clone(STAGES);
+    this.stage_data = U.clone(STAGES);
     this.score = 0;
     this.next_stage_id = 0;
   };
   
   klass.prototype.modify_score = function(score) {
     this.score += score;
-    u.trigger_event('score_modified', score);
+    EVENT.trigger('score_modified', score);
   };
 
   klass.prototype.run = function() { 
@@ -23,18 +23,17 @@ var Gameflow = (function() {
     }
     
     function start() {     
-      u.bind_event(gameflow_events.stage_over);
+      EVENT.bind(gameflow_events.stage_over);
       next_stage();
     }
     
     function end() {
-      u.unbind_event(gameflow_events.stage_over);      
+      EVENT.unbind(gameflow_events.stage_over);
+      
       if (this_gameflow.score >= SETTINGS.good_score) {
-        $('#ending_good').fadeIn(500);
-        AUDIO.play('music', 'celebration');
+        EVENT.trigger('ending_good');
       } else {
-        $('#ending_bad').fadeIn(500);
-        AUDIO.play('music', 'on_a_night_like_this');
+        EVENT.trigger('ending_bad');
       }
       
       $(document).one('click', function() {

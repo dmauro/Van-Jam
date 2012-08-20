@@ -4,7 +4,7 @@ $(function() {
     
     var gameflow = new Gameflow();    
     
-    if (u.query_params().skip_intro) {   
+    if (U.query_params().skip_intro) {   
       (new Gameflow()).run();
     } else {
       INTRO.run(function() {
@@ -15,7 +15,7 @@ $(function() {
   
   function load_backgrounds(callback) {
     images = _.map(MANIFEST.bg, function(bg) { return ASSET.url('./img/bg/' + bg + '.png'); });
-    u.preload_images(images, callback);    
+    U.preload_images(images, callback);    
   }
   
   function init_audio(callback) {

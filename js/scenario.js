@@ -35,17 +35,17 @@ var Scenario = (function() {
     // State choreography
     
     function show_prompt() {
-      u.trigger_event('scenario_prompt_display_start', this_scenario, function() {
+      EVENT.trigger('scenario_prompt_display_start', this_scenario, function() {
         $('#playfield').one('click', clear_prompt);
       });
     }
     
     function clear_prompt() {
-      u.trigger_event('scenario_prompt_display_end', show_gameplay_intro);
+      EVENT.trigger('scenario_prompt_display_end', show_gameplay_intro);
     }
     
     function show_gameplay_intro() {
-      u.trigger_event('gameplay_intro_display_start', this_scenario, start_gameplay);
+      EVENT.trigger('gameplay_intro_display_start', this_scenario, start_gameplay);
     }
     
     var gameplay_events = {
@@ -76,8 +76,8 @@ var Scenario = (function() {
     };
     
     function start_gameplay() {
-      _.each(gameplay_events, function(e) { u.bind_event(e); });
-      _.each(termination_events, function(e) { u.bind_event(e); });
+      _.each(gameplay_events, function(e) { EVENT.bind(e); });
+      _.each(termination_events, function(e) { EVENT.bind(e); });
       
       // Set countdown timer
       countdownInverval = setInterval(function() {
@@ -86,28 +86,28 @@ var Scenario = (function() {
           // Select the final remaining action
           actions.shift().select();
         } else {
-          u.random_element(actions).invalidate();
-          u.trigger_event('countdown_update', actions.length - 1);
+          U.random_element(actions).invalidate();
+          EVENT.trigger('countdown_update', actions.length - 1);
         }        
       }, SETTINGS.per_action_time);
    
-      u.trigger_event('countdown_update', valid_actions().length);      
-      u.trigger_event('gameplay_start', action_labels());
+      EVENT.trigger('countdown_update', valid_actions().length);      
+      EVENT.trigger('gameplay_start', action_labels());
     }
     
     function end_gameplay() {
       // Bind all gameplay events
-      _.each(gameplay_events, function(e) { u.unbind_event(e); });
+      _.each(gameplay_events, function(e) { EVENT.unbind(e); });
       
       // Clear countdown timer
       clearInterval(countdownInverval);
       
-      u.trigger_event('gameplay_end');
+      EVENT.trigger('gameplay_end');
     }
     
     function finish() {
-      _.each(termination_events, function(e) { u.unbind_event(e); });
-      u.trigger_event('scenario_over');  
+      _.each(termination_events, function(e) { EVENT.unbind(e); });
+      EVENT.trigger('scenario_over');  
     }
     
     show_prompt();

@@ -3,7 +3,7 @@ var Stage = (function() {
     this.id = id;
     this.gameflow = gameflow;
     this.prompt = config.prompt;
-    this.scenario_data = u.clone(config.scenarios);
+    this.scenario_data = U.clone(config.scenarios);
     this.bg = config.bg;
     this.music = config.music;
     this.is_raul = config.is_raul;
@@ -23,13 +23,13 @@ var Stage = (function() {
     }
     
     function start_scenarios() {
-      u.bind_event(gameflow_events.scenario_over);
+      EVENT.bind(gameflow_events.scenario_over);
       next_scenario();
     }
     
     function end() {
-      u.unbind_event(gameflow_events.scenario_over);
-      u.trigger_event('stage_over');
+      EVENT.unbind(gameflow_events.scenario_over);
+      EVENT.trigger('stage_over');
     }
     
     function next_scenario() {    
@@ -43,17 +43,17 @@ var Stage = (function() {
     // State choreography
     
     function show_prompt() {
-      u.trigger_event('stage_prompt_display_start', this_stage, function() {
+      EVENT.trigger('stage_prompt_display_start', this_stage, function() {
         $('#playfield').one('click', clear_prompt);
       });
     }
     
     function clear_prompt() {
-      u.trigger_event('stage_prompt_display_end', this_stage, start_scenarios);
+      EVENT.trigger('stage_prompt_display_end', this_stage, start_scenarios);
     }
     
     // Kick-off
-    u.trigger_event('stage_enter', this);    
+    EVENT.trigger('stage_enter', this);    
     show_prompt();
   };
   

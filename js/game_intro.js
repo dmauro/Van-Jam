@@ -90,7 +90,7 @@ $(function() {
     clear_transition_callbacks();
     
     $('#game_intro').fadeOut(500, function() {
-      u.trigger_event("game_intro_done");
+      EVENT.trigger("game_intro_done");
       if (finish_callback) finish_callback();      
     });
   }
@@ -100,7 +100,7 @@ $(function() {
     finish_callback = callback;
     
     $('#game_intro').fadeIn(500, function() {
-      lines_remaining = u.clone(lines);
+      lines_remaining = U.clone(lines);
       next_line();
       $('#game_intro img').animate({opacity: 0.7}, total_time);   
     })

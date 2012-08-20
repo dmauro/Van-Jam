@@ -49,7 +49,7 @@ var AUDIO = (function() {
   };
 
   module.play = function(channel, sound_id, opts) {
-    console.log("SFX: " + sound_id + " [" + channel + "]");
+    //console.log("SFX: " + sound_id + " [" + channel + "]");
     
     opts = opts || {};
     

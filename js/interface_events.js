@@ -8,7 +8,8 @@ $(function() {
   };
    
   // Events
-  events = {
+  var events = {
+    
     game_intro_done: function() {
       AUDIO.stop('music');
     },
@@ -100,10 +101,21 @@ $(function() {
     action_selected: function(event, action) {
       VIEW.actions.stop(action.id, function() {
         $('#hud').fadeOut(100);
-        u.trigger_event('actions_outro_done');
+        EVENT.trigger('actions_outro_done');
       });
+    },
+    
+    ending_good: function() {
+      $('#ending_good').fadeIn(500);
+      AUDIO.play('music', 'celebration');      
+    },
+
+    ending_bad: function() {
+      $('#ending_bad').fadeIn(500);
+      AUDIO.play('music', 'on_a_night_like_this');      
     }
-  };
+    
+  }; // var events
   
   // Convert events into event handler objects
   events = _.reduce(events, function(res, handler, event) {
@@ -116,11 +128,11 @@ $(function() {
  
   // Bind all events
   _.each(events, function(event, id) {
-    u.bind_event(event);
+    EVENT.bind(event);
   });
   
   // Broadcast click events for actions
   VIEW.actions.on_option_click(function(id) {
-    u.trigger_event('option_clicked', id);
+    EVENT.trigger('option_clicked', id);
   });
 });
