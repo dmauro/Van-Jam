@@ -1,5 +1,7 @@
 $(function() {
   function start_game() {
+    $('#loading').html('');
+    
     var gameflow = new Gameflow();    
     
     if (u.query_params().skip_intro) {   
