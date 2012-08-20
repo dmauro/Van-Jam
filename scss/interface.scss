@@ -1,4 +1,6 @@
 @import "mixins.scss";
+@import url(http://fonts.googleapis.com/css?family=Quando);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
 
 body {
     margin:0;
@@ -51,10 +53,11 @@ body {
 
             p {
                 font-size:18px;
-                font-family:Arial, Helvetica, sans-serif;
+                font-family:"Source Sans Pro";
 
                 span {
                     font-weight:bold;
+                    font-size:24px;
                 }
             }
         }
@@ -67,7 +70,7 @@ body {
             padding:20px 40px;
             background:rgba(#fff, 0.75);
             font-size:18px;
-            font-family:Arial, Helvetica, sans-serif;
+            font-family:"Source Sans Pro";
             border-radius: 10px;
         }
     }
@@ -98,7 +101,7 @@ body {
             width:460px;
             border:2px solid #999;
             font-size:24px;
-            font-family:Arial, Helvetica, sans-serif;
+            font-family:Quando;
         }
         
         .call p, .response p {
@@ -117,7 +120,7 @@ body {
 
             .message {
                 float:left;
-                @include arrow(right, 20px, 2px, #999, $msg_bg);
+                @include arrow(right, 10px, 2px, #999, $msg_bg);
             }
         }
 
@@ -130,7 +133,7 @@ body {
             .message {
                 float:right;
                 text-align:center;
-                @include arrow(left, 20px, 2px, #999, $msg_bg);
+                @include arrow(left, 10px, 2px, #999, $msg_bg);
             }
         }
     }
@@ -256,6 +259,8 @@ li.choice {
     overflow:hidden;
     display:inline-block;
     margin:2px;
+    font-family:Quando;
+    font-size:14px;
     border:1px solid $bgcolor*0.5;
     padding:1em 1.5em;
     background:$bgcolor;
