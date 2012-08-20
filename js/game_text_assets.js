@@ -11,7 +11,7 @@ var GAME_TEXT_ASSETS = {
       // ext libs
       'js/ext/jquery.js',
       'js/ext/underscore.js',
-      'js/ext/soundmanager2-jsmin.js',
+      'js/ext/soundmanager2-nodebug-jsmin.js',
       
       // generic libs
       'js/u.js',            
