@@ -14,7 +14,8 @@ class gui.Scenario
         @round_node = $('.round', @node)
 
     set_scene: (day_num, description, callback) ->
-        $('.days_remaining', @scene_node).text(@total_days - day_num)
+        days_remaining = @total_days - day_num
+        $('.days_remaining', @scene_node).text(days_remaining + ' ' + (if days_remaining == 1 then 'day' else 'days') + ' remaining')
         $('.day_count', @scene_node).append("<img src=\"img\/day_#{day_num}.png\" class=\"temp\">")
         $('p.description', @scene_node).text description
         @node.css "visibility", "visibile"

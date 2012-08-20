@@ -23,8 +23,10 @@
     }
 
     Scenario.prototype.set_scene = function(day_num, description, callback) {
-      var _this = this;
-      $('.days_remaining', this.scene_node).text(this.total_days - day_num);
+      var days_remaining,
+        _this = this;
+      days_remaining = this.total_days - day_num;
+      $('.days_remaining', this.scene_node).text(days_remaining + ' ' + (days_remaining === 1 ? 'day' : 'days') + ' remaining');
       $('.day_count', this.scene_node).append("<img src=\"img\/day_" + day_num + ".png\" class=\"temp\">");
       $('p.description', this.scene_node).text(description);
       this.node.css("visibility", "visibile");
