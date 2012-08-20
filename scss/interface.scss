@@ -120,7 +120,7 @@ body {
 
             .message {
                 float:left;
-                @include arrow(right, 20px, 2px, #999, $msg_bg);
+                @include arrow(right, 10px, 2px, #999, $msg_bg);
             }
         }
 
@@ -133,7 +133,7 @@ body {
             .message {
                 float:right;
                 text-align:center;
-                @include arrow(left, 20px, 2px, #999, $msg_bg);
+                @include arrow(left, 10px, 2px, #999, $msg_bg);
             }
         }
     }
