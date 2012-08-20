@@ -74,7 +74,7 @@ window.SCENARIOS =
         ]            
     
     "rough_year" :
-        prompt  : "Hey, Jean. Heard you've been having a rough year. How have you been holding up?"
+        prompt  : "Hey, Jean-Claude. Heard you've been having a rough year. How have you been holding up?"
         actions : [
                 label   : "God gave me a great body, and it is my duty to take care of my physical temple."
                 score   : SCORES.smooth

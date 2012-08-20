@@ -9,6 +9,10 @@ $(function() {
    
   // Events
   events = {
+    game_intro_done: function() {
+      AUDIO.stop('music');
+    },
+    
     stage_enter: function(event, stage) {
       $('#playfield').css({'background-image': 'url(' + './img/bg/' + stage.bg + ')'});      
     },
