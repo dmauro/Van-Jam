@@ -20,6 +20,10 @@ body {
   margin-top:10px;
 }
 
+#hud {
+  display: none;
+}
+
 #game_intro {
   display: none; /* starting state */
   width: 800px;

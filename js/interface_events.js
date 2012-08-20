@@ -11,6 +11,7 @@ $(function() {
   events = {
     game_intro_done: function() {
       AUDIO.stop('music');
+      $('#hud').fadeIn(500);
     },
     
     stage_enter: function(event, stage) {
