@@ -166,7 +166,7 @@
 
     ChoiceList.prototype.on_option_click = function(callback) {
       return this.node.children('li.choice').bind("mousedown", function(event) {
-        AUDIO.play('sfx', 'button_click');
+        AUDIO.play('ui', 'button_click');
         return callback($(event.target).attr('data-id'));
       });
     };
@@ -504,15 +504,6 @@
     };
 
     HeartMeter.prototype.update_score = function(amt) {
-      if (amt === 15) {
-        AUDIO.play('sfx', 'perfect');
-      } else if (amt === -10) {
-        AUDIO.play('sfx', 'offensive_effect');
-      } else if (amt <= 0) {
-        AUDIO.play('sfx', 'giggle');
-      } else if (amt > 0) {
-        AUDIO.play('sfx', 'neutral_effect');
-      }
       if (amt > 0) {
         this.increase(amt);
         return this.show_heart(amt);

@@ -120,7 +120,7 @@ class gui.ChoiceList
         
     on_option_click: (callback) ->
         @node.children('li.choice').bind "mousedown", (event) ->
-            AUDIO.play 'sfx', 'button_click'
+            AUDIO.play 'ui', 'button_click'
             callback $(event.target).attr('data-id')
 
     place_options: ->
@@ -377,15 +377,6 @@ class gui.HeartMeter
         , 500)
 
     update_score: (amt) ->
-        if amt is 15
-            AUDIO.play 'sfx', 'perfect'
-        else if amt is -10
-            AUDIO.play 'sfx', 'offensive_effect'
-        else if amt <= 0
-            AUDIO.play 'sfx', 'giggle'
-        else if amt > 0
-            AUDIO.play 'sfx', 'neutral_effect'
-
         if amt > 0
             @increase amt
             @show_heart amt

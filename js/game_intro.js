@@ -96,7 +96,7 @@ $(function() {
   }
   
   INTRO.run = function(callback) {
-    AUDIO.play('music', 'love_at_first_sight_intro_loop', {loop: true});
+    AUDIO.play('music', 'love_at_first_sight_intro', {loop: true});
     finish_callback = callback;
     
     $('#game_intro').fadeIn(500, function() {

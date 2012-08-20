@@ -9,7 +9,7 @@ var AUDIO = (function() {
     sound.play({
       'volume': volume || 100,      
       onfinish: function() {
-        loop(sound);
+        loop(sound, volume);
       }
     });
   }
@@ -48,6 +48,8 @@ var AUDIO = (function() {
   };
 
   module.play = function(channel, sound_id, opts) {
+    console.log("SFX: " + sound_id + " [" + channel + "]");
+    
     opts = opts || {};
     
     module.stop(channel);      
@@ -56,9 +58,25 @@ var AUDIO = (function() {
     if (opts.loop) {
       loop(current_tracks[channel], channel_volume[channel]);
     } else {
-      current_tracks[channel].play({ volume: channel_volume[channel] || 100 });
+      current_tracks[channel].play({
+        volume: channel_volume[channel] || 100,
+        onfinish: opts.onfinish
+      });
     }
   };
+  
+  module.play_list = function() {
+    var params = _.map(arguments, function(a) { return a; });
+    var channel = params.shift();
+    var sounds = _.flatten(params);
+    
+    module.play(channel, sounds.shift(), {
+      onfinish: function() {
+        if (!sounds.length) return;
+        module.play_list(channel, sounds);
+      }
+    });
+  }
   
   module.stop = function(channel) {
     if (current_tracks[channel]) {

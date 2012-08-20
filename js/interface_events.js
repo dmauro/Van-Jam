@@ -28,6 +28,7 @@ $(function() {
     },
     
     stage_prompt_display_end: function(event, stage, anim_done_callback) {
+      AUDIO.play('ui', 'button_click');
       AUDIO.play('music', stage.music, {loop: true});      
       VIEW.scene.hide_scene(anim_done_callback);
     },
@@ -37,11 +38,17 @@ $(function() {
     },
 
     scenario_prompt_display_end: function(event, anim_done_callback) {
+      AUDIO.play('ui', 'button_click');
       VIEW.scene.hide_prompt(); // doesn't take callback
       anim_done_callback();
     },
     
     gameplay_intro_display_start: function(event, scenario, anim_done_callback) {
+      var sfx_map = ['one', 'two', 'three'];
+      if (sfx_map[scenario.id]) {
+        AUDIO.play_list('sfx', ['round', sfx_map[scenario.id]]);
+      }
+      
       VIEW.scene.start_round(scenario.id + 1, anim_done_callback);
     },
     
@@ -74,6 +81,16 @@ $(function() {
     
     score_modified: function(event, delta) {    
       VIEW.score_meter.modify(delta, SETTINGS.max_score);
+
+      if (delta == SETTINGS.max_scenario_score) {
+          AUDIO.play('score_response', 'perfect');
+      } else if (delta == SETTINGS.min_scenario_score) {
+          AUDIO.play('score_response', 'offensive_effect');
+      } else if (delta > 0) {
+          AUDIO.play('score_response', 'giggle');
+      } else {
+          AUDIO.play('score_response', 'neutral_effect');
+      }
     },
     
     action_invalidated: function(event, action) {

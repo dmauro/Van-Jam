@@ -6,7 +6,8 @@ $(function() {
     default_action_score: 5,
     gameflow_scenario_count: Math.min(_.keys(SCENARIOS).length, 5),
     total_scenarios: _.reduce(STAGES, function(res, stage) { return res + stage.scenarios.length }, 0),
-    max_scenario_score: _.max(_.values(SCORES))
+    max_scenario_score: _.max(_.values(SCORES)),
+    min_scenario_score: _.min(_.values(SCORES))
   };
   
   // dependent values
@@ -26,14 +27,17 @@ var MANIFEST = {
   ],
   audio: [
     // music
-    'love_at_first_sight_intro_loop',
-    'love_at_first_sight_groove_loop',    
+    'love_at_first_sight_groove',    
     'i_should_be_so_lucky',
     'red_blooded_woman',
     
     // ending music
     'on_a_night_like_this',
     'celebration',
+    
+    // other music
+    'love_at_first_sight_intro',
+    'stage_entry',    
     
     // sfx
     'one',
@@ -45,10 +49,12 @@ var MANIFEST = {
     'seven',
     'eight',
     'nine',
+    
+    'round',
+    'button_click',
+    
     'giggle',
     'perfect',
-    'stage_entry',
-    'button_click',
     'offensive_effect',
     'neutral_effect'
   ]

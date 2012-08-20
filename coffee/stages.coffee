@@ -6,7 +6,7 @@ window.STAGES = [
       window.SCENARIOS['stealth_compromised'],
       window.SCENARIOS['leaving'],
     ]
-    music: 'love_at_first_sight_groove_loop'
+    music: 'love_at_first_sight_groove'
   ,
     bg: "scene_2.png"
     prompt: "The film crew is getting the next scene set up. Here's your chance to show Kylie the real you."

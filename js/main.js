@@ -19,8 +19,8 @@ $(function() {
   }
   
   function init_audio(callback) {
-    AUDIO.set_channel_volume('sfx', 100);
-    AUDIO.set_channel_volume('music', 70);  
+    AUDIO.set_channel_volume('score_response', 70);
+    AUDIO.set_channel_volume('music', 60);  
   
     sound_config = _.reduce(MANIFEST.audio, function(res, sound_id) {
       res.push({ id: sound_id, url: './media/audio/' + sound_id + '.mp3' });
