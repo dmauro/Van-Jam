@@ -1,7 +1,9 @@
 $(function() {
   // Raw position modification
+  /*
   var centered = ['#ending_good', '#ending_bad', '#playfield', '#stage_prompt', '#scenario_prompt', '#gameplay_intro'];
   _.each(centered, function(c) { u.center_node(c); });
+  */
 
   // Audio channels
   AUDIO.set_channel_volume('sfx', 100);

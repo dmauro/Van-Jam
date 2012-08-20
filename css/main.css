@@ -12,10 +12,12 @@ body {
   position: relative;
 }
 
-#playfield, #ending_good, #ending_bad {
-  margin-top:10px;
+#playfield, #ending_good, #ending_bad{
+  position:relative;
   width: 800px;
   height: 600px;
+  margin:0 auto;
+  margin-top:10px;
 }
 
 #game_intro {
@@ -48,14 +50,22 @@ body {
   text-align: center;
 }
 
+#ending {
+  position:absolute;
+  width:100%;
+  height:600px;
+}
+
 #ending_good {
   display: none;
   background-image: url('../img/bg/ending_win.png');
   z-index:100;
+  margin:0 auto;
 }
 
 #ending_bad {
   display: none;
   background-image: url('../img/bg/ending_lose.png');
   z-index:100;
+  margin:0 auto;
 }
