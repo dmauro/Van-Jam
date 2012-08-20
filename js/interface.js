@@ -207,6 +207,7 @@
         top: choice_offset.top,
         margin: 0
       });
+      clone.addClass("highlight");
       return this.node.animate({
         opacity: 0
       }, 200, function() {
@@ -216,7 +217,6 @@
         return clone.animate({
           top: "-=20px"
         }, 200, function() {
-          clone.addClass("highlight");
           return setTimeout(function() {
             if (typeof callback === "function") {
               callback();

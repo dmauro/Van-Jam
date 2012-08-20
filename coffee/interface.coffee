@@ -145,6 +145,7 @@ class gui.ChoiceList
             top     : choice_offset.top
             margin  : 0
         )
+        clone.addClass "highlight"
 
         # Fade away everything else
         @node.animate(
@@ -158,7 +159,6 @@ class gui.ChoiceList
             clone.animate(
                 top : "-=20px"
             , 200, =>
-                clone.addClass "highlight"
                 setTimeout(=>
                     callback() if typeof callback is "function"
                     clone.remove()
