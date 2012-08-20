@@ -4,6 +4,11 @@ body {
   margin: 0;
   padding: 0;
   border: 0;
+  background: black;
+}
+
+#loading {
+  color: cyan;
 }
 
 #wrap {
@@ -12,12 +17,13 @@ body {
   position: relative;
 }
 
-#playfield, #ending_good, #ending_bad{
+#playfield, #ending_good, #ending_bad, #game_intro {
   position:relative;
   width: 800px;
   height: 600px;
   margin:0 auto;
   margin-top:10px;
+  border-radius: 15px;
 }
 
 #hud {
@@ -26,10 +32,6 @@ body {
 
 #game_intro {
   display: none; /* starting state */
-  width: 800px;
-  height: 600px;
-  background-color: black;
-  position: relative;
 }
 
 #game_intro img {

@@ -24,7 +24,6 @@ class gui.Scenario
         ).animate(
             opacity : 1
         , 300, =>
-            AUDIO.play 'sfx', 'stage_entry'
             callback() if typeof callback is "function"
         )
 

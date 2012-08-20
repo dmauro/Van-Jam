@@ -23,6 +23,7 @@ $(function() {
     },
     
     stage_prompt_display_start: function(event, stage, anim_done_callback) {
+      AUDIO.play('music', 'stage_entry');
       VIEW.scene.set_scene(stage.id + 1, stage.prompt, anim_done_callback);      
     },
     

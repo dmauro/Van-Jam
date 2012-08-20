@@ -34,7 +34,6 @@
       }).animate({
         opacity: 1
       }, 300, function() {
-        AUDIO.play('sfx', 'stage_entry');
         if (typeof callback === "function") {
           return callback();
         }

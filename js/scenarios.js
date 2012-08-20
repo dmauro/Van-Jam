@@ -120,7 +120,7 @@
           label: "My biggest orgasm - not in a sexual way - is to walk with my dogs on the beach.",
           score: SCORES.sweet
         }, {
-          label: "[Do a split]",
+          label: "[Do the splits]",
           score: 0
         }, {
           label: "I am fascinated by air. If you remove the air from the sky, all the birds would fall to the ground. And all the planes, too.",
