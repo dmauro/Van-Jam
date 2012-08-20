@@ -23,7 +23,7 @@ $(function() {
     AUDIO.set_channel_volume('music', 60);  
   
     sound_config = _.reduce(MANIFEST.audio, function(res, sound_id) {
-      res.push({ id: sound_id, url: './media/audio/' + sound_id + '.mp3' });
+      res.push({ id: sound_id, url: './audio/' + sound_id + '.mp3' });
       return res;
     }, []);
     
