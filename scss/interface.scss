@@ -229,11 +229,7 @@ body {
 }
 
 #choices {
-    position:absolute;
-    width:600px;
-    height:400px;
-    top:100px;
-    left:100px;
+    @include fullsize();
     background:rgba(#eee, 0.5);
     border:2px solid #fff;
     margin:0;
@@ -246,11 +242,11 @@ li.choice {
     position:absolute;
     top:-1000px;
     left:-1000px;
-    max-width:300px;
-    max-height:300px;
+    max-width:150px;
+    max-height:150px;
     overflow:hidden;
     display:inline-block;
-    margin:0.5em;
+    margin:2px;
     padding:1em 1.5em;
     background:#098Bc2;
     color:#fff;
