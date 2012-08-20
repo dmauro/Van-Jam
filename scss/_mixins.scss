@@ -58,6 +58,24 @@
     }
 }
 
+@mixin bg-linear-gradient($gradients, $ie: false) {
+    background:#{nth(nth($gradients, 2), 1)};
+    background-image: -moz-linear-gradient($gradients);
+    background-image: -webkit-linear-gradient($gradients);
+    background-image: -o-linear-gradient($gradients);
+    background-image: -ms-linear-gradient($gradients);
+    background-image: linear-gradient($gradients);
+    @if $ie {
+        $grad_type: 0;
+        /* Do our best to approximate veritcal and horizontal */
+        $angle: nth($gradients, 1);
+        @if ($angle >= -45 and $angle <= 45) or ($angle >= -180 and $angle <= -135) or ($angle >= 135 and $angle <= 180) {
+            $grad_type: 1;
+        }
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=#{nth(nth($gradients, 2), 1)}, endColorstr=#{nth(nth($gradients, length($gradients)), 1)},GradientType=#{$grad_type} );
+    }
+}
+
 @mixin arrow($dir, $size:20px, $border_size: 0, $border_color: #aaa, $bgcolor: #fff) {
     @if $dir == none {
         &:before,

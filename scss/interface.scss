@@ -80,7 +80,7 @@ body {
         background:rgba(#fff, 0.75);
         @include box-sizing(border-box);
 
-        $msg_bg:rgba(#fff, 0.75);
+        $msg_bg:rgba(#fff, 1);
 
         .avatar {
             width:150px;
@@ -93,6 +93,7 @@ body {
             padding:20px;
             background:$msg_bg;
             width:460px;
+            border:2px solid #999;
             font-size:24px;
             font-family:Arial, Helvetica, sans-serif;
         }
@@ -109,7 +110,7 @@ body {
 
             .message {
                 float:left;
-                @include arrow(right, 20px, 0, #aaa, $msg_bg);
+                @include arrow(right, 20px, 2px, #999, $msg_bg);
             }
         }
 
@@ -122,7 +123,7 @@ body {
             .message {
                 float:right;
                 text-align:center;
-                @include arrow(left, 20px, 0, #aaa, $msg_bg);
+                @include arrow(left, 20px, 2px, #999, $msg_bg);
             }
         }
     }
@@ -239,6 +240,7 @@ body {
 }
 
 li.choice {
+    $bgcolor:#098Bc2;
     position:absolute;
     top:-1000px;
     left:-1000px;
@@ -247,19 +249,21 @@ li.choice {
     overflow:hidden;
     display:inline-block;
     margin:2px;
+    border:1px solid $bgcolor*0.5;
     padding:1em 1.5em;
-    background:#098Bc2;
+    background:$bgcolor;
+    @include bg-linear-gradient((-90deg, $bgcolor*1.2 0%, $bgcolor*0.8 100%));
     color:#fff;
-    text-shadow: 0 -1px 0 rgba(#000, 0.3);
+    text-shadow: 0 -1px 0 rgba(#000, 0.5);
     cursor:pointer;
     list-style-type:none;
     @include border-radius(3em);
 
-    &.hightlight {
-        @include box-shadow(0 0 5px 2px #29abe2);
+    &.highlight {
+        @include box-shadow(0 0 5px 2px yellow);
     }
 
-    &:hover {
+    &:hover:not(.highlight) {
         background:#29abe2;
     }
 }
