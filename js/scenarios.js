@@ -12,7 +12,7 @@
 
   window.SCENARIOS = {
     'how_are_you': {
-      prompt: 'Cammy here. Are you all right?',
+      prompt: '"Cammy here. Are you all right?"',
       actions: [
         {
           label: "More than all right, now you are here.",
@@ -36,7 +36,7 @@
       ]
     },
     'stealth_compromised': {
-      prompt: "Stealth mode compromised, sir! We're busted!",
+      prompt: "\"Stealth mode compromised, sir! We're busted!\"",
       actions: [
         {
           label: "Luckily, you've driven me crazy. . . So I'm going to do it.",
@@ -60,7 +60,7 @@
       ]
     },
     'leaving': {
-      prompt: '[tearful] He told us to leave. We did the right thing.',
+      prompt: '[tearful] "He told us to leave. We did the right thing."',
       actions: [
         {
           label: "If you believe what you say, then acting is easy.",
@@ -84,7 +84,7 @@
       ]
     },
     "rough_year": {
-      prompt: "Hey, Jean-Claude. Heard you've been having a rough year. How have you been holding up?",
+      prompt: "\"Hey, Jean-Claude. Heard you've been having a rough year. How have you been holding up?\"",
       actions: [
         {
           label: "God gave me a great body, and it is my duty to take care of my physical temple.",
@@ -108,7 +108,7 @@
       ]
     },
     "conversational": {
-      prompt: "So what are you up to these days?",
+      prompt: "\"So what are you up to these days?\"",
       actions: [
         {
           label: "You think I would wear black silk underwear? (Because I do...)",
@@ -132,7 +132,7 @@
       ]
     },
     "leaving_thailand": {
-      prompt: "The director is ready. Back to work! I can't wait to leave Thailand.",
+      prompt: "\"The director is ready. Back to work! I can't wait to leave Thailand.\"",
       actions: [
         {
           label: "Let me show you MY Thailand. [smoulder]",
@@ -156,7 +156,7 @@
       ]
     },
     "villainy": {
-      prompt: "For you, the day Raul Julia graced your presence was the most important day of your life. But for me, it was Tuesday.",
+      prompt: "\"For you, the day Raul Julia graced your presence was the most important day of your life. But for me, it was Tuesday.\"",
       actions: [
         {
           label: "I love playing the villain, but a villian with class.",
@@ -180,7 +180,7 @@
       ]
     },
     "fellow_warrior": {
-      prompt: "Why do you address a fellow warrior with such disrespect?",
+      prompt: "\"Why do you address a fellow warrior with such disrespect?\"",
       actions: [
         {
           label: "Welcome to the Shadaloo front. You're just in time for the kickoff.",
@@ -204,7 +204,7 @@
       ]
     },
     "dying_raul": {
-      prompt: "Kylie...I'm....dying...",
+      prompt: "\"Kylie...I'm....dying...\"",
       actions: [
         {
           label: "Go home, be a family man!",

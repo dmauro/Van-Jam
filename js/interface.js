@@ -61,7 +61,7 @@
         is_kylie = true;
       }
       this.node.css("visibility", "visible");
-      $('.call .message', this.prompt_node).text(prompt);
+      $('.call .message', this.prompt_node).html(prompt);
       $('.call .avatar', this.prompt_node).removeClass("raul");
       if (!is_kylie) {
         $('.call .avatar', this.prompt_node).addClass("raul");

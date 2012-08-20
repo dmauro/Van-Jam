@@ -40,7 +40,7 @@ class gui.Scenario
 
     show_prompt: (prompt, callback, is_kylie=true) ->
         @node.css "visibility", "visible"
-        $('.call .message', @prompt_node).text prompt
+        $('.call .message', @prompt_node).html prompt
         $('.call .avatar', @prompt_node).removeClass("raul")
         $('.call .avatar', @prompt_node).addClass("raul") unless is_kylie
         @prompt_node.css(

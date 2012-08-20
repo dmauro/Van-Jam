@@ -11,15 +11,15 @@ $(function() {
   events = {
     game_intro_done: function() {
       AUDIO.stop('music');
-      $('#hud').fadeIn(500);
     },
     
     stage_enter: function(event, stage) {
+      
       $('#playfield').css({'background-image': 'url(' + './img/bg/' + stage.bg + ')'});      
     },
     
     stage_over: function() {
-      AUDIO.stop('music');      
+      AUDIO.stop('music');
     },
     
     stage_prompt_display_start: function(event, stage, anim_done_callback) {
@@ -54,7 +54,9 @@ $(function() {
       }
     },
     
-    gameplay_start: function(event, option_labels) {      
+    gameplay_start: function(event, option_labels) {
+      $('#hud').fadeIn(100);      
+      
       // Timer
       VIEW.timer.show();
       
@@ -66,7 +68,7 @@ $(function() {
       VIEW.actions.go();
     },
     
-    gameplay_end: function(event) {
+    gameplay_end: function(event) {     
       VIEW.timer.hide();
     },
     
@@ -79,7 +81,8 @@ $(function() {
     },
     
     action_selected: function(event, action) {
-      VIEW.actions.stop(action.id, function() {        
+      VIEW.actions.stop(action.id, function() {
+        $('#hud').fadeOut(100);
         u.trigger_event('actions_outro_done');
       });
     }
