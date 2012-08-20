@@ -361,7 +361,7 @@
     };
 
     Choice.prototype.place_randomly = function() {
-      var count, is_placed, try_to_place,
+      var is_placed, try_to_place,
         _this = this;
       is_placed = false;
       try_to_place = function() {
@@ -373,13 +373,8 @@
           return is_placed = true;
         }
       };
-      count = 100;
       while (!is_placed) {
         try_to_place();
-        count--;
-        if (count === 0) {
-          break;
-        }
       }
     };
 

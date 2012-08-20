@@ -270,11 +270,8 @@ class gui.Choice
             if !@check_for_collision x, y
                 @place_at x, y
                 is_placed = true
-        count = 100
         while !is_placed
             try_to_place()
-            count--
-            break if count is 0
 
         return
 
