@@ -2,6 +2,21 @@
 var u = (function() {
   var module = {};
   
+  module.preload_images = function(images, callback) {
+    var image_count = images.length;
+    
+    _.each(images, function(image_url) {
+      var img = new Image();
+      img.src = image_url;
+      img.onload = function() {
+        --image_count;
+        if (!image_count) {
+          callback();
+        }
+      }
+    });
+  };
+  
   // Returns integer in [0, max)
   module.random_int = function(max) {
     var v = Math.floor(Math.random() * max);

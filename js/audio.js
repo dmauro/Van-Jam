@@ -4,32 +4,6 @@ var AUDIO = (function() {
   var current_tracks = {};
   var sound_library = {};
   var channel_volume = {};
- 
-  var all_sounds_load_started = false;
-  var ready_callback = null;
-  
-  function all_sounds_loaded() {
-    if (!all_sounds_load_started) return false;
-    
-    for (var i = 0; i < sound_library.length; ++i) {
-      if (!sound_library[i].loaded) return false;
-    }
-    
-    return true;
-  }
-  
-  var ghetto_mutex = false;
-  function attempt_ready_callback() {
-    if (ghetto_mutex) return;
-    ghetto_mutex = true;
-    
-    if (ready_callback && all_sounds_loaded()) {
-      ready_callback();
-      ready_callback = null
-    }
-    
-    ghetto_mutext = false;
-  };  
   
   function loop(sound, volume) {    
     sound.play({
@@ -44,7 +18,7 @@ var AUDIO = (function() {
   // Public interface
     
   module.init = function(sounds, callback) {
-    ready_callback = callback;
+    var sound_load_count = sounds.length;   
     
     soundManager.setup({
       url: './js/ext',
@@ -57,14 +31,14 @@ var AUDIO = (function() {
             url: sound_config.url,
             autoLoad: true,
             autoPlay: false,
-            onload: attempt_ready_callback
+            onload: function() {
+              --sound_load_count;
+              if (!sound_load_count) {
+                callback();
+              }
+            }
           });        
         });
-        
-        all_sounds_load_started = true;
-        
-        // Attempt the ready callback immediately.
-        attempt_ready_callback();
       }
     });
   };

@@ -6,7 +6,6 @@ var Scenario = (function() {
 
     // Setup action configurtion data.
     action_data = config.actions;    
-console.log(action_data);
 
     // Create Action objects
     this.actions = _.map(action_data, function(action_config, i) {

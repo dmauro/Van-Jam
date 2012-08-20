@@ -20,7 +20,9 @@ $(function() {
 
 var MANIFEST = {
   bg: [
-    
+    'scene_1',
+    'scene_2',
+    'scene_3'
   ],
   audio: [
     // music
