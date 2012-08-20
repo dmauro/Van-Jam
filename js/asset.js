@@ -15,5 +15,13 @@ var ASSET = (function() {
     return global_prefix + '/' + original.replace(/^\.?\//, '');
   };
   
+  module.write_js_include = function(relative_url) {
+    document.write("<script type='text/javascript' src='" + module.url(relative_url) +  "'></scr" + "ipt>");
+  }
+  
+  module.write_css_include = function(relative_url) {
+    document.write("<link rel='stylesheet' type ='text/css' href='" + module.url(relative_url) +"' />");    
+  }
+  
   return module;
 })();

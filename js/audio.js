@@ -21,8 +21,9 @@ var AUDIO = (function() {
     var sound_load_count = sounds.length;   
     
     soundManager.setup({
-      url: ASSET.url('js/ext'),
+      url: ASSET.url('/swf'),
       flashVersion: 9,
+      allowScriptAccess: 'always',
       onready: function() {
         // Load each sound
         _.each(sounds, function(sound_config) {
