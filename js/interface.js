@@ -23,11 +23,12 @@
     }
 
     Scenario.prototype.set_scene = function(day_num, description, callback) {
-      var days_remaining,
+      var days_remaining, image_url,
         _this = this;
       days_remaining = this.total_days - day_num;
       $('.days_remaining', this.scene_node).text(days_remaining + ' ' + (days_remaining === 1 ? 'day' : 'days') + ' remaining');
-      $('.day_count', this.scene_node).append("<img src=\"img\/day_" + day_num + ".png\" class=\"temp\">");
+      image_url = ASSET.url("img/day_" + day_num + ".png");
+      $('.day_count', this.scene_node).append("<img src='" + image_url + "' class=\"temp\">");
       $('p.description', this.scene_node).text(description);
       this.node.css("visibility", "visibile");
       return this.scene_node.css({
@@ -94,11 +95,12 @@
     };
 
     Scenario.prototype.start_round = function(round_num, callback) {
-      var flirt, flirt_wait_time, round_count, round_fade_time, round_wait_time,
+      var flirt, flirt_wait_time, image_url, round_count, round_fade_time, round_wait_time,
         _this = this;
       round_count = $('.round_count', this.round_node);
       flirt = $('.flirt', this.round_node);
-      round_count.append("<img src=\"img/round_" + round_num + ".png\">");
+      image_url = ASSET.url("img/round_" + round_num + ".png");
+      round_count.append("<img src='" + image_url + "'>");
       round_count.css({
         visibility: "visible",
         opacity: 0
@@ -528,14 +530,15 @@
     }
 
     Timer.prototype.set = function(num) {
-      var number, numbers, _i, _len, _results;
+      var image_url, number, numbers, _i, _len, _results;
       this.node.empty();
       num = Math.round(num);
       numbers = num.toString().split("");
       _results = [];
       for (_i = 0, _len = numbers.length; _i < _len; _i++) {
         number = numbers[_i];
-        _results.push(this.node.append($("<img src=\"./img/count_" + number + ".png\"></img>")));
+        image_url = ASSET.url("img/count_" + number + ".png");
+        _results.push(this.node.append($("<img src='" + image_url + "'></img>")));
       }
       return _results;
     };

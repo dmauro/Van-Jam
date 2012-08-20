@@ -14,8 +14,8 @@ $(function() {
     },
     
     stage_enter: function(event, stage) {
-      
-      $('#playfield').css({'background-image': 'url(' + './img/bg/' + stage.bg + ')'});      
+      var url = ASSET.url('./img/bg/' + stage.bg);
+      $('#playfield').css({'background-image': 'url(' + url + ')'});      
     },
     
     stage_over: function() {

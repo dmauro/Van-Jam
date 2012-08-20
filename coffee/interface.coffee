@@ -16,7 +16,8 @@ class gui.Scenario
     set_scene: (day_num, description, callback) ->
         days_remaining = @total_days - day_num
         $('.days_remaining', @scene_node).text(days_remaining + ' ' + (if days_remaining == 1 then 'day' else 'days') + ' remaining')
-        $('.day_count', @scene_node).append("<img src=\"img\/day_#{day_num}.png\" class=\"temp\">")
+        image_url = ASSET.url "img/day_#{day_num}.png"
+        $('.day_count', @scene_node).append("<img src='#{image_url}' class=\"temp\">")
         $('p.description', @scene_node).text description
         @node.css "visibility", "visibile"
         @scene_node.css(
@@ -65,7 +66,8 @@ class gui.Scenario
     start_round: (round_num, callback) ->
         round_count = $('.round_count', @round_node)
         flirt = $('.flirt', @round_node)
-        round_count.append("<img src=\"img/round_#{round_num}.png\">")
+        image_url = ASSET.url("img/round_#{round_num}.png")
+        round_count.append("<img src='#{image_url}'>")
         round_count.css(
             visibility  : "visible"
             opacity     : 0
@@ -396,7 +398,8 @@ class gui.Timer
         num = Math.round num
         numbers = num.toString().split ""
         for number in numbers
-            @node.append $("<img src=\"./img/count_#{number}.png\"></img>")
+            image_url = ASSET.url("img/count_#{number}.png")
+            @node.append $("<img src='#{image_url}'></img>")
 
     hide: ->
         @node.animate(

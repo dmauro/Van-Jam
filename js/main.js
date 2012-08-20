@@ -14,7 +14,7 @@ $(function() {
   }
   
   function load_backgrounds(callback) {
-    images = _.map(MANIFEST.bg, function(bg) { return './img/bg/' + bg + '.png'; });
+    images = _.map(MANIFEST.bg, function(bg) { return ASSET.url('./img/bg/' + bg + '.png'); });
     u.preload_images(images, callback);    
   }
   
@@ -23,7 +23,7 @@ $(function() {
     AUDIO.set_channel_volume('music', 60);  
   
     sound_config = _.reduce(MANIFEST.audio, function(res, sound_id) {
-      res.push({ id: sound_id, url: './audio/' + sound_id + '.mp3' });
+      res.push({ id: sound_id, url: ASSET.url('./audio/' + sound_id + '.mp3') });
       return res;
     }, []);
     
