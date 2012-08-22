@@ -5,6 +5,8 @@ body {
   padding: 0;
   border: 0;
   background: black;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
 }
 
 #loading {
@@ -74,4 +76,14 @@ body {
   background-image: url('../img/bg/ending_lose.png');
   z-index:100;
   margin:0 auto;
+}
+
+#about {
+  margin-top: 40px;
+  text-align: center;
+}
+
+#about a, #about a:hover, #about a:visited {
+  color: #555;
+  text-decoration: none;
 }
