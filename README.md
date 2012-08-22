@@ -1,13 +1,15 @@
 SHOW HER MY THAILAND: A Street Fighter Romance
 ==============================================
 
-Created during the 2012 [Jean-Claude Van Jam](http://jeanclaudevanjam.com/), hosted by Babycastles.
+Created for the 2012 [Jean-Claude Van Jam](http://jeanclaudevanjam.com/).
 
 Play it here: http://showhermythailand.com
 
 CREDITS:
-  - David Mauro
-  - Jen Taclas
-  - Jeff Lee
+  - [David Mauro](http://dmauro.com)
+  - [Jen Taclas](http://www.linkedin.com/in/jentaclas)
+  - [Jeff Lee](http://jeff.blamblamblam.net)
 
-Thanks to Jessen Jurado, Babycastles, and Eyebeam.
+Thanks to Jessen Jurado, Babycastles, and Eyebeam. Apologies to JCVD, Kylie Minogue, and possibly also Raul Julia.
+
+Read a mini-postmortem [here](http://hoyvinglavin.com/2012/08/22/jcvj-mini-postmortem/).
